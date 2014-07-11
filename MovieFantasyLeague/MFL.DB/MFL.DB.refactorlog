@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="fd850fd3-343f-4801-bf81-c4b5f4840d26" ChangeDateTime="07/04/2014 16:38:33">
+    <Property Name="ElementName" Value="[dbo].[Seasons].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Seasons]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SeasonId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="31f09df4-ccae-4cdc-b2ac-3599aeb22b99" ChangeDateTime="07/04/2014 16:43:05">
+    <Property Name="ElementName" Value="[dbo].[Movies].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Movies]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MovieId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="53cf2642-10fb-4eff-876c-9c60e939ffcb" ChangeDateTime="07/04/2014 16:46:17">
+    <Property Name="ElementName" Value="[dbo].[UsersMovies].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UsersMovies]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8010f93e-7ae3-4ee5-982a-188db3985bac" ChangeDateTime="07/04/2014 16:48:26">
+    <Property Name="ElementName" Value="[dbo].[UserSeasons].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserSeasons]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+</Operations>
