@@ -33,7 +33,10 @@ namespace MFL.Web
             //   appId: "",
             //   appSecret: "");
 
-            app.UseGoogleAuthentication("1041186130845-j5imqhupho9u7cjhs46p2iefoove2rtk.apps.googleusercontent.com", "pkZmXgScvWs7vM7uYL_JU8Pf");                        
+            GoogleOAuth2AuthenticationOptions options = new GoogleOAuth2AuthenticationOptions();
+            options.CallbackPath = new PathString("https://moviefantasyleague.azurewebsites.net/signin-google");
+            options.ClientId = "1041186130845-j5imqhupho9u7cjhs46p2iefoove2rtk.apps.googleusercontent.com";
+            options.ClientSecret = "pkZmXgScvWs7vM7uYL_JU8Pf";
         }
     }
 }
