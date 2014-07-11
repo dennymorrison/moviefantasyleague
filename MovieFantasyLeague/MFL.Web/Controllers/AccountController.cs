@@ -13,7 +13,7 @@ using MFL.Web.Models;
 namespace MFL.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : MFLBaseController
     {
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))

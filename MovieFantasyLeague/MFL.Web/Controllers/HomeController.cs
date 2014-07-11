@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MFL.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MFLBaseController
     {
         public ActionResult Index()
         {
