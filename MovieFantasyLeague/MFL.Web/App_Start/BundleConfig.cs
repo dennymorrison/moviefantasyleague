@@ -14,19 +14,19 @@ namespace MFL.Web
             BundleTable.EnableOptimizations = false;
 
             bundles.UseCdn = true;
-            var cssTransformer = new CssTransformer();
-            var jsTransformer = new JsTransformer();
+            var styleTransformer = new StyleTransformer();
+            var scriptTransformer = new ScriptTransformer();
             var nullOrderer = new NullOrderer();
 
             var jqueryBundle = new CustomScriptBundle("~/bundles/jquery");
             jqueryBundle.Include("~/Scripts/jquery-{version}.js");
-            jqueryBundle.Transforms.Add(jsTransformer);
+            jqueryBundle.Transforms.Add(scriptTransformer);
             jqueryBundle.Orderer = nullOrderer;
             bundles.Add(jqueryBundle);
 
             var jqueryvalBundle = new CustomScriptBundle("~/bundles/jqueryval");
             jqueryvalBundle.Include("~/Scripts/jquery.validate*");
-            jqueryvalBundle.Transforms.Add(jsTransformer);
+            jqueryvalBundle.Transforms.Add(scriptTransformer);
             jqueryvalBundle.Orderer = nullOrderer;
             bundles.Add(jqueryvalBundle);
 
@@ -37,7 +37,7 @@ namespace MFL.Web
 
             var modernizrBundle = new CustomScriptBundle("~/bundles/modernizr");
             modernizrBundle.Include("~/Scripts/modernizr-*");
-            modernizrBundle.Transforms.Add(jsTransformer);
+            modernizrBundle.Transforms.Add(scriptTransformer);
             modernizrBundle.Orderer = nullOrderer;
             bundles.Add(modernizrBundle);
         }
