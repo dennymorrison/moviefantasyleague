@@ -12,8 +12,9 @@ using MFL.Web.Models;
 
 namespace MFL.Web.Controllers
 {
+    [RequireHttps]
     [Authorize]
-    public class AccountController : MFLBaseController
+    public class AccountController : Controller
     {
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace MFL.Web.Controllers
 {
     [RequireHttps]
-    public class HomeController : MFLBaseController
+    public class HomeController : Controller
     {
         public ActionResult Index()
         {
