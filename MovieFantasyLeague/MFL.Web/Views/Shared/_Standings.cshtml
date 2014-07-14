@@ -1,8 +1,8 @@
 ﻿@model MFL.Web.Models.StandingsModel
 
-<h2>@Model.Title</h2>
+<h2>Standings for <a href="@Url.Action("Details", "Season", new { Id = Model.SeasonId })">@Model.SeasonName</a></h2>
 
-<table>
+<table class="tablesaw" data-mode="stack">
     <thead>
         <tr>
             <th>Player</th>

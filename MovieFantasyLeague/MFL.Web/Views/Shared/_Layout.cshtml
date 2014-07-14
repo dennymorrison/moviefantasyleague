@@ -10,11 +10,15 @@
     <title>Movie Fantasy League: @ViewBag.Title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="@Url.Content("~/Content/Site.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/tablesaw.css")" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script src="@Url.Content("~/Scripts/tablesaw.js")" type="text/javascript"></script>
 
     <!--[if lt IE 9]>
         <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -41,8 +45,8 @@
                     {
                         <li class="@(ViewBag.Menu == "Draft" ? "active" : "")"><a href="@Url.Action("Index","Draft")">Draft</a></li>
                     }
-                    <li class="@(ViewBag.Menu == "Movies" ? "active" : "")"><a href="@Url.Action("Index","Movies")">Movies</a></li>
-                    <li class="@(ViewBag.Menu == "Seasons" ? "active" : "")"><a href="@Url.Action("Index","Seasons")">Seasons</a></li>
+                    <li class="@(ViewBag.Menu == "Movies" ? "active" : "")"><a href="@Url.Action("Index","Movie")">Movies</a></li>
+                    <li class="@(ViewBag.Menu == "Seasons" ? "active" : "")"><a href="@Url.Action("Index","Season")">Seasons</a></li>
                     <li class="@(ViewBag.Menu == "About" ? "active" : "")"><a href="@Url.Action("About", "Home")">About</a></li>
                     @if (User.IsInRole("Admin"))
                     {

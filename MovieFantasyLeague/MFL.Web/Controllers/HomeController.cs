@@ -7,7 +7,6 @@ using MFL.Web.Models;
 
 namespace MFL.Web.Controllers
 {
-    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -26,7 +25,7 @@ namespace MFL.Web.Controllers
                 standings.Add(s);
             }
 
-            model.Standings.Title = "Summer 2014";
+            model.Standings.SeasonName = "Summer 2014";
             model.Standings.Standings = standings;
 
             return View(model);

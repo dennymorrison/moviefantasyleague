@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MFL.Web.Models
 {
@@ -12,7 +10,9 @@ namespace MFL.Web.Models
             Standings = new List<StandingsEntry>();            
         }
 
-        public string Title { get; set; }
+        public Guid SeasonId { get; set; }
+
+        public string SeasonName { get; set; }
 
         public IList<StandingsEntry> Standings { get; set; }
     }
