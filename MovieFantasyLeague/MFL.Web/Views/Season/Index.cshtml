@@ -1,0 +1,42 @@
+﻿@model MFL.Web.Models.SeasonsListModel
+
+@{
+    ViewBag.Title = "Seasons";
+    ViewBag.Menu = "Seasons";
+}
+
+<h2>Seasons</h2>
+
+@if(User.IsInRole("Admin"))
+{ 
+    <div>
+        @Html.ActionLink("Create New", "Create")
+    </div>
+}
+
+<table class="tablesaw" data-mode="stack">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date Range</th>
+            <th>Champion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model.Seasons)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "Season", new { Id = s.Id })">@s.Name</a>
+                </td>
+                <td>
+                    @s.DateRange
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Player", new { Id = s.ChampionId })">@s.Champion</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot></tfoot>
+</table>

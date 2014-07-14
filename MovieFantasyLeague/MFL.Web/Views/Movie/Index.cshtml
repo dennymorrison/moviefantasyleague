@@ -1,0 +1,50 @@
+﻿@model MFL.Web.Models.MoviesListModel
+
+@{
+    ViewBag.Title = "Movies";
+    ViewBag.Menu = "Movies";
+}
+
+<h2>Movies</h2>
+
+@if(User.IsInRole("Admin"))
+{ 
+    <div>
+        @Html.ActionLink("Create New", "Create")
+    </div>
+}
+
+<div class="message">
+    * Denotes a replacement movie.
+</div>
+
+<table class="tablesaw" data-mode="stack">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Season</th>
+            <th>Draft Cost</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model.Movies)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "Movie", new { Id = m.Id })">@m.Title @(m.IsReplacement? "*" : "")</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Season", new { Id = m.SeasonId })">@m.SeasonName</a>
+                </td>
+                <td>
+                    $@m.DraftCost
+                </td>
+                <td>
+                    <a href="@m.BoxOfficeMojoLink" target="_blank">View on Box Office Mojo</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot></tfoot>
+</table>
