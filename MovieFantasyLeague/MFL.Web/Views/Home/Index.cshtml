@@ -1,5 +1,7 @@
-﻿@{
+﻿@model MFL.Web.Models.HomeModel
+@{
     ViewBag.Title = "Home Page";
+    ViewBag.Menu = "Home";
 }
 
 <div class="jumbotron">
@@ -29,3 +31,5 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+@Html.RenderPartial("_Standings", Model.Standings)

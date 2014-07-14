@@ -1,0 +1,30 @@
+﻿@model MFL.Web.Models.StandingsModel
+
+<h2>@Model.Title</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Progress</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var s in Model.Standings)
+        {
+            <tr>
+                <td>
+                    @s.Name
+                </td>
+                <td>
+                    @s.Progess
+                </td>
+                <td>
+                    $@s.Total.ToString()
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot></tfoot>
+</table>
