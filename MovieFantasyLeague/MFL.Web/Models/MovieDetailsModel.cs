@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace MFL.Web.Models
 {
-    public class MovieModel
+    public class MovieDetailsModel
     {
-        public MovieModel() { }
+        public MovieDetailsModel() { }
 
         public Guid Id { get; set; }
 
@@ -26,5 +26,9 @@ namespace MFL.Web.Models
         public bool IsReplacement { get; set; }
 
         public string Notes { get; set; }
+
+        public string SeasonName { get; set; }
+
+        public Guid SeasonId { get; set; }
     }
 }

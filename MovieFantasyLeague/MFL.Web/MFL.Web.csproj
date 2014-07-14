@@ -224,9 +224,10 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MovieListItemModel.cs" />
-    <Compile Include="Models\MovieModel.cs" />
+    <Compile Include="Models\MovieDetailsModel.cs" />
     <Compile Include="Models\MoviesListModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
+    <Compile Include="Models\SeasonDetailsModel.cs" />
     <Compile Include="Models\SeasonListItemModel.cs" />
     <Compile Include="Models\SeasonsListModel.cs" />
     <Compile Include="Models\StandingsEntry.cs" />
@@ -286,6 +287,8 @@
     <Content Include="Views\Shared\_Standings.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Season\Index.cshtml" />
+    <Content Include="Views\Movie\Details.cshtml" />
+    <Content Include="Views\Season\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

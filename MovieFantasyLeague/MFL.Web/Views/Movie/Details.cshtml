@@ -1,0 +1,69 @@
+﻿@model MFL.Web.Models.MovieDetailsModel
+
+@{
+    ViewBag.Title = Model.Title + " Details";
+    ViewBag.Menu = "Movies";
+}
+
+<h2>@Model.Title</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="@Model.PosterLink" alt="@Model.Title Poster" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="@Model.BoxOfficeMojoLink" target="_blank">View on Box Office Mojo</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            Season
+        </div>
+        <div class="col-md-8">
+            <a href="@Url.Action("Details", "Season", new { Id = Model.SeasonId })">@Model.SeasonName</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            Release Date
+        </div>
+        <div class="col-md-8">
+            @Model.ReleaseDate.ToShortDateString()
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            Draft Cost
+        </div>
+        <div class="col-md-8">
+            @Model.DraftCost.ToString("C")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            Domestic Gross
+        </div>
+        <div class="col-md-8">
+            @Model.DomesticGross.ToString("C")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            Efficiency (Gross / Price)
+        </div>
+        <div class="col-md-8">
+            @Model.Efficiency.ToString("C")
+        </div>
+    </div>
+    <div class="round">
+        <div class="col-md-4">
+            Notes
+        </div>
+        <div class="col-md-8">
+            @Model.Notes
+        </div>
+    </div>
+</div>

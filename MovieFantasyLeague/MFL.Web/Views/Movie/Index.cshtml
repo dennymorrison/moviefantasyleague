@@ -38,7 +38,7 @@
                     <a href="@Url.Action("Details", "Season", new { Id = m.SeasonId })">@m.SeasonName</a>
                 </td>
                 <td>
-                    $@m.DraftCost
+                    @m.DraftCost.ToString("C")
                 </td>
                 <td>
                     <a href="@m.BoxOfficeMojoLink" target="_blank">View on Box Office Mojo</a>

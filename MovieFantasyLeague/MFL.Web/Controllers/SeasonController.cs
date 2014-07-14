@@ -21,5 +21,23 @@ namespace MFL.Web.Controllers
 
             return View(model);
         }
+
+        public ActionResult Details(Guid id)
+        {
+            SeasonDetailsModel model = new SeasonDetailsModel();
+
+            model.Id = Guid.NewGuid();
+            model.Name = "Summer 2014";
+            model.Notes = "Some notes";
+            model.StartDate = new DateTime(2014, 4, 4);
+            model.EndDate = new DateTime(2014, 9, 5);
+            model.StartEditDate = new DateTime(2014, 3, 20);
+            model.EndEditDate = new DateTime(2014, 4, 4);
+            model.EndTotalUpdateDate = new DateTime(2014, 9, 6);
+            model.Budget = 100;
+            model.Champion = "";
+
+            return View(model);
+        }
 	}
 }
