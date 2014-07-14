@@ -1,0 +1,30 @@
+﻿@model MFL.Web.Models.PlayerTeamSummaryModel
+
+<h4>@Model.Player</h4>
+
+<table class="tablesaw table-striped" data-mode="stack">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Domestic Gross</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var m in Model.Movies)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "Movie", new { Id = m.Id })">@m.Title</a>
+                </td>
+                <td>
+                    @m.ReleaseDate.ToShortDateString()
+                </td>
+                <td>
+                    @m.DomesticGross.ToString("C")
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot></tfoot>
+</table>

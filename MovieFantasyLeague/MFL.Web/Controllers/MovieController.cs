@@ -13,7 +13,7 @@ namespace MFL.Web.Controllers
 
             List<MovieListItemModel> movies = new List<MovieListItemModel>();
 
-            movies.Add(new MovieListItemModel() { Title = "Harry Potter", DraftCost = 13, SeasonName = "Summer 2011", SeasonId = Guid.NewGuid() });            
+            movies.Add(new MovieListItemModel() { Title = "Harry Potter", DraftCost = 13, SeasonName = "Summer 2011", SeasonId = Guid.NewGuid(), BoxOfficeMojoLink="http://www.boxofficemojo.com" });            
 
             model.Movies = movies;
 

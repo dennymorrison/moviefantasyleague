@@ -7,7 +7,11 @@ namespace MFL.Web.Models
 {
     public class SeasonDetailsModel
     {
-        public SeasonDetailsModel() { }
+        public SeasonDetailsModel() 
+        {
+            Standings = new StandingsModel();
+            PlayerSummaries = new List<PlayerTeamSummaryModel>();
+        }
 
         public Guid Id { get; set; }
 
@@ -30,5 +34,11 @@ namespace MFL.Web.Models
         public int Budget { get; set; }
 
         public string Notes { get; set; }
+
+        public StandingsModel Standings { get; set; }
+
+        public SeasonStatus Status { get; set; }
+
+        public IList<PlayerTeamSummaryModel> PlayerSummaries { get; set; }
     }
 }

@@ -6,6 +6,40 @@
 
 <h2>@Model.Name</h2>
 
+@if(Model.Status == MFL.Web.Models.SeasonStatus.Completed)
+{
+    <div class="money">
+        <span>Champion:</span> @Model.Champion
+    </div>
+}
+else if(Model.Status == MFL.Web.Models.SeasonStatus.DraftPeriod)
+{
+    <div class="message">
+        
+    </div>
+}
+else if(Model.Status == MFL.Web.Models.SeasonStatus.OnGoing)
+{
+    <div class="message">
+
+    </div>
+}
+else
+{
+    <div class="bulletin">
+
+    </div>
+}
+
+@{Html.RenderPartial("_Standings", Model.Standings);}
+
 <div class="container">
 
 </div>
+
+<h2>Player by Player Summary</h2>
+
+@foreach(var p in Model.PlayerSummaries)
+{
+    Html.RenderPartial("_PlayerTeamSummary", p);
+}

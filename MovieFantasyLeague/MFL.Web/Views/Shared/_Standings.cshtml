@@ -2,7 +2,7 @@
 
 <h2>Standings for <a href="@Url.Action("Details", "Season", new { Id = Model.SeasonId })">@Model.SeasonName</a></h2>
 
-<table class="tablesaw" data-mode="stack">
+<table class="tablesaw table-striped" data-mode="stack">
     <thead>
         <tr>
             <th>Player</th>
@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var s in Model.Standings)
+        @foreach (var s in Model.Standings)
         {
             <tr>
                 <td>

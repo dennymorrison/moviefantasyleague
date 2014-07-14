@@ -15,7 +15,7 @@
     <AssemblyName>MVC5Bootstrap-3-1-1-Less</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -214,6 +214,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DraftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\SeasonController.cs" />
@@ -221,15 +222,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DraftModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MovieDraftListModel.cs" />
     <Compile Include="Models\MovieListItemModel.cs" />
     <Compile Include="Models\MovieDetailsModel.cs" />
     <Compile Include="Models\MoviesListModel.cs" />
+    <Compile Include="Models\MovieTeamListModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
+    <Compile Include="Models\PlayerTeamSummaryModel.cs" />
     <Compile Include="Models\SeasonDetailsModel.cs" />
     <Compile Include="Models\SeasonListItemModel.cs" />
     <Compile Include="Models\SeasonsListModel.cs" />
+    <Compile Include="Models\SeasonStatus.cs" />
     <Compile Include="Models\StandingsEntry.cs" />
     <Compile Include="Models\StandingsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -289,6 +295,8 @@
     <Content Include="Views\Season\Index.cshtml" />
     <Content Include="Views\Movie\Details.cshtml" />
     <Content Include="Views\Season\Details.cshtml" />
+    <Content Include="Views\Draft\Index.cshtml" />
+    <Content Include="Views\Shared\_PlayerTeamSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -314,7 +322,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53130</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53130/</IISUrl>
+          <IISUrl>http://localhost/MFL.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

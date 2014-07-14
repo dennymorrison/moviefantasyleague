@@ -1,0 +1,54 @@
+﻿@model MFL.Web.Models.DraftModel
+
+@{
+    ViewBag.Title = "Draft";
+    ViewBag.Menu = "Draft";
+}
+
+<h2>Draft for <a href="@Url.Action("Details", "Season", new { Id = Model.SeasonId })">@Model.SeasonName</a></h2>
+
+@if(Model.IsEditable)
+{
+ <div class="message">
+
+ </div>           
+}
+else
+{
+
+}
+
+<div class="money">
+    You have spent @Model.Spent out of @Model.Budget
+</div>
+
+<table class="tablesaw table-striped table-hover" data-mode="stack">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Draft Cost</th>
+            <th>Selected</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model.Movies)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "Movie", new { Id = m.Id })">@m.Title</a>
+                </td>
+                <td>
+                    @m.ReleaseDate.ToShortDateString()
+                </td>
+                <td>
+                    @m.DraftCost
+                </td>
+                <td>
+                    <input type="checkbox" checked="@(m.IsSelected? "checked" : "")" readonly="@(Model.IsEditable? "": "readonly")" />
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot></tfoot>
+</table>

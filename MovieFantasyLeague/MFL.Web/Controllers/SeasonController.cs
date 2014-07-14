@@ -36,6 +36,12 @@ namespace MFL.Web.Controllers
             model.EndTotalUpdateDate = new DateTime(2014, 9, 6);
             model.Budget = 100;
             model.Champion = "";
+            model.Status = SeasonStatus.OnGoing;
+
+            List<StandingsEntry> standings = new List<StandingsEntry>();
+            standings.Add(new StandingsEntry() { Name = "Denny", Progess = "3/4", Total = 242424 });
+            standings.Add(new StandingsEntry() { Name = "Heather", Progess = "2/5", Total = 13141 });
+            model.Standings = new StandingsModel() { SeasonName = "Summer 2014", Standings = standings };
 
             return View(model);
         }

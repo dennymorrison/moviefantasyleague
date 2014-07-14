@@ -18,5 +18,7 @@ namespace MFL.Web.Models
         public string Champion { get; set; }
 
         public Guid ChampionId { get; set; }
+
+        public decimal ChampionTotal { get; set; }
     }
 }
