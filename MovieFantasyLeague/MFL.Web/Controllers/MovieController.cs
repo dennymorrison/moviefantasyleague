@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using MFL.Web.Models;
+using MFL.Data.Repository.Contract;
 
 namespace MFL.Web.Controllers
 {
-    public class MovieController : Controller
+    [RequireHttps]
+    public class MovieController : BaseController
     {
         public ActionResult Index()
         {
@@ -13,7 +15,13 @@ namespace MFL.Web.Controllers
 
             List<MovieListItemModel> movies = new List<MovieListItemModel>();
 
-            movies.Add(new MovieListItemModel() { Title = "Harry Potter", DraftCost = 13, SeasonName = "Summer 2011", SeasonId = Guid.NewGuid(), BoxOfficeMojoLink="http://www.boxofficemojo.com" });            
+            IMovieRepository repository = GetMovieRepository();
+            var entities = repository.List(-1, -1);
+
+            foreach(var m in entities)
+            {
+                movies.Add(new MovieListItemModel(m));
+            }
 
             model.Movies = movies;
 
@@ -38,6 +46,39 @@ namespace MFL.Web.Controllers
             model.SeasonId = Guid.NewGuid();
 
             return View(model);
+        }
+        
+        [Authorize(Roles="Admin")]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create(FormCollection collection)
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(Guid id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(FormCollection collection)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(Guid id)
+        {
+            return View();
         }
     }
 }

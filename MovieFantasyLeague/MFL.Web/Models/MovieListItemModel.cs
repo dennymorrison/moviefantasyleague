@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MFL.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,17 @@ namespace MFL.Web.Models
     public class MovieListItemModel
     {
         public MovieListItemModel() { }
+
+        public MovieListItemModel(Movie m)
+        {
+            Id = m.MovieID;
+            Title = m.Title;
+            SeasonId = m.Season.SeasonID;
+            SeasonName = m.Season.Name;
+            DraftCost = m.DraftCost;
+            IsReplacement = m.IsReplacement;
+            BoxOfficeMojoLink = m.BoxOfficeMojoLink;
+        }
 
         public Guid Id { get; set; }
 

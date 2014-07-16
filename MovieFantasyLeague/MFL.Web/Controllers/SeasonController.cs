@@ -7,6 +7,7 @@ using MFL.Web.Models;
 
 namespace MFL.Web.Controllers
 {
+    [RequireHttps]
     public class SeasonController : Controller
     {
         public ActionResult Index()
