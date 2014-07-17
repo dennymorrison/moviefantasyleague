@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Web.Mvc;
 using MFL.Data.Repository;
 using MFL.Data.Repository.Contract;
@@ -8,7 +9,7 @@ namespace MFL.Web.Controllers
 {
     public class BaseController : Controller
     {
-        private readonly bool _useMock = true;
+        private readonly bool _useMock = bool.Parse(ConfigurationManager.AppSettings["UseMockData"]);
 
         protected IMovieRepository MovieRepository
         {
