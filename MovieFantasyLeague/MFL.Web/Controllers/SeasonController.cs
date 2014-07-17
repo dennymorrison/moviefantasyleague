@@ -13,8 +13,7 @@ namespace MFL.Web.Controllers
             SeasonsListModel model = new SeasonsListModel();
             List<SeasonListItemModel> seasons = new List<SeasonListItemModel>();
 
-            var repository = GetSeasonRepository();
-            var entities = repository.List(-1, -1);
+            var entities = SeasonRepository.List(-1, -1);
 
             foreach(var s in entities)
             {
@@ -28,9 +27,8 @@ namespace MFL.Web.Controllers
 
         public ActionResult Details(Guid id)
         {
-            var repository = GetSeasonRepository();
-            var entity = repository.GetById(id);
-            var teamEntities = repository.GetLeagueTeamsForSeason(GetPlayerLeagueId(), id);
+            var entity = SeasonRepository.GetById(id);
+            var teamEntities = SeasonRepository.GetLeagueTeamsForSeason(GetPlayerLeagueId(), id);
 
             SeasonDetailsModel model = new SeasonDetailsModel(entity);
             List<StandingsEntry> standings = new List<StandingsEntry>();

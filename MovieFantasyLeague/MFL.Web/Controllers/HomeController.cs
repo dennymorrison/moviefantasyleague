@@ -14,8 +14,7 @@ namespace MFL.Web.Controllers
         {
             HomeModel model = new HomeModel();
 
-            var repository = GetSeasonRepository();
-            var teamEntities = repository.GetLeagueTeamsForSeason(GetPlayerLeagueId(), GetCurrentSeasonId());
+            var teamEntities = SeasonRepository.GetLeagueTeamsForSeason(GetPlayerLeagueId(), GetCurrentSeasonId());
 
             List<StandingsEntry> standings = new List<StandingsEntry>();
 

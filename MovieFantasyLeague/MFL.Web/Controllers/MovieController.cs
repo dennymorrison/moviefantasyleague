@@ -15,8 +15,7 @@ namespace MFL.Web.Controllers
 
             List<MovieListItemModel> movies = new List<MovieListItemModel>();
 
-            IMovieRepository repository = GetMovieRepository();
-            var entities = repository.List(-1, -1);
+            var entities = MovieRepository.List(-1, -1);
 
             foreach(var m in entities)
             {
@@ -30,8 +29,7 @@ namespace MFL.Web.Controllers
 
         public ActionResult Details(Guid id)
         {
-            IMovieRepository repository = GetMovieRepository();
-            var entity = repository.GetById(id);
+            var entity = MovieRepository.GetById(id);
 
             MovieDetailsModel model = new MovieDetailsModel(entity);
 

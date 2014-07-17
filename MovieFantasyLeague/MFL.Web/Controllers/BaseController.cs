@@ -10,20 +10,26 @@ namespace MFL.Web.Controllers
     {
         private readonly bool _useMock = true;
 
-        protected IMovieRepository GetMovieRepository()
+        protected IMovieRepository MovieRepository
         {
-            if (_useMock)
-                return new MockMovieRepository();
-            else
-                return new MovieRepository();
+            get
+            {
+                if(_useMock)
+                    return new MockMovieRepository();
+                else
+                    return new MovieRepository();
+            }
         }
 
-        protected ISeasonRepository GetSeasonRepository()
+        protected ISeasonRepository SeasonRepository
         {
-            if (_useMock)
-                return new MockSeasonRepository();
-            else
-                return new SeasonRepository();
+            get
+            {
+                if (_useMock)
+                    return new MockSeasonRepository();
+                else
+                    return new SeasonRepository();
+            }
         }
 
         protected Guid GetPlayerLeagueId()
