@@ -1,0 +1,556 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MovieFantasyLeagueModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Leagues">
+          <Key>
+            <PropertyRef Name="LeagueId" />
+          </Key>
+          <Property Name="LeagueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="OwnerId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="MovieId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DraftCost" Type="int" Nullable="false" />
+          <Property Name="ReleaseDate" Type="date" Nullable="false" />
+          <Property Name="DomesticGross" Type="money" Nullable="false" />
+          <Property Name="BoxOfficeMojoLink" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="PosterLink" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="SeasonId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Note" Type="ntext" />
+          <Property Name="IsReplacement" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seasons">
+          <Key>
+            <PropertyRef Name="SeasonId" />
+          </Key>
+          <Property Name="SeasonId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="date" Nullable="false" />
+          <Property Name="StartEdits" Type="date" Nullable="false" />
+          <Property Name="EndEdits" Type="date" Nullable="false" />
+          <Property Name="Note" Type="ntext" />
+          <Property Name="Budget" Type="int" Nullable="false" />
+          <Property Name="ChampionTeamId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="TeamMovies">
+          <Key>
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="TeamId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MovieId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LeagueId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SeasonId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLeagues">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LeagueId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LeagueId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="ReceiveEmails" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_League_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Leagues" Type="Self.Leagues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Leagues">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movies_Seasons">
+          <End Role="Seasons" Type="Self.Seasons" Multiplicity="1" />
+          <End Role="Movies" Type="Self.Movies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seasons">
+              <PropertyRef Name="SeasonId" />
+            </Principal>
+            <Dependent Role="Movies">
+              <PropertyRef Name="SeasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seasons_Teams">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="0..1" />
+          <End Role="Seasons" Type="Self.Seasons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Seasons">
+              <PropertyRef Name="ChampionTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamMovies_Movies">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+          <End Role="TeamMovies" Type="Self.TeamMovies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="TeamMovies">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamMovies_Teams">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="TeamMovies" Type="Self.TeamMovies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="TeamMovies">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Leagues">
+          <End Role="Leagues" Type="Self.Leagues" Multiplicity="1" />
+          <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leagues">
+              <PropertyRef Name="LeagueId" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Seasons">
+          <End Role="Seasons" Type="Self.Seasons" Multiplicity="1" />
+          <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seasons">
+              <PropertyRef Name="SeasonId" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="SeasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLeagues_Leagues">
+          <End Role="Leagues" Type="Self.Leagues" Multiplicity="1" />
+          <End Role="UserLeagues" Type="Self.UserLeagues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leagues">
+              <PropertyRef Name="LeagueId" />
+            </Principal>
+            <Dependent Role="UserLeagues">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLeagues_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserLeagues" Type="Self.UserLeagues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserLeagues">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MovieFantasyLeagueModelStoreContainer">
+          <EntitySet Name="Leagues" EntityType="Self.Leagues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seasons" EntityType="Self.Seasons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamMovies" EntityType="Self.TeamMovies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLeagues" EntityType="Self.UserLeagues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_League_Users" Association="Self.FK_League_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Leagues" EntitySet="Leagues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movies_Seasons" Association="Self.FK_Movies_Seasons">
+            <End Role="Seasons" EntitySet="Seasons" />
+            <End Role="Movies" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seasons_Teams" Association="Self.FK_Seasons_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Seasons" EntitySet="Seasons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamMovies_Movies" Association="Self.FK_TeamMovies_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="TeamMovies" EntitySet="TeamMovies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamMovies_Teams" Association="Self.FK_TeamMovies_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="TeamMovies" EntitySet="TeamMovies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Leagues" Association="Self.FK_Teams_Leagues">
+            <End Role="Leagues" EntitySet="Leagues" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Seasons" Association="Self.FK_Teams_Seasons">
+            <End Role="Seasons" EntitySet="Seasons" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Users" Association="Self.FK_Teams_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLeagues_Leagues" Association="Self.FK_UserLeagues_Leagues">
+            <End Role="Leagues" EntitySet="Leagues" />
+            <End Role="UserLeagues" EntitySet="UserLeagues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLeagues_Users" Association="Self.FK_UserLeagues_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserLeagues" EntitySet="UserLeagues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MovieFantasyLeagueModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MovieFantasyLeagueEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Leagues" EntityType="MovieFantasyLeagueModel.League" />
+          <EntitySet Name="Movies1" EntityType="MovieFantasyLeagueModel.Movie" />
+          <EntitySet Name="Seasons" EntityType="MovieFantasyLeagueModel.Season" />
+          <EntitySet Name="Teams" EntityType="MovieFantasyLeagueModel.Team" />
+          <EntitySet Name="Users" EntityType="MovieFantasyLeagueModel.User" />
+          <AssociationSet Name="FK_League_Users" Association="MovieFantasyLeagueModel.FK_League_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="League" EntitySet="Leagues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Leagues" Association="MovieFantasyLeagueModel.FK_Teams_Leagues">
+            <End Role="League" EntitySet="Leagues" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movies_Seasons" Association="MovieFantasyLeagueModel.FK_Movies_Seasons">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="Movy" EntitySet="Movies1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seasons_Teams" Association="MovieFantasyLeagueModel.FK_Seasons_Teams">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Season" EntitySet="Seasons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Seasons" Association="MovieFantasyLeagueModel.FK_Teams_Seasons">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Users" Association="MovieFantasyLeagueModel.FK_Teams_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="TeamMovies" Association="MovieFantasyLeagueModel.TeamMovies">
+            <End Role="Movy" EntitySet="Movies1" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="UserLeagues" Association="MovieFantasyLeagueModel.UserLeagues">
+            <End Role="League" EntitySet="Leagues" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="League">
+          <Key>
+            <PropertyRef Name="LeagueId" />
+          </Key>
+          <Property Name="LeagueId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="OwnerId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="MovieFantasyLeagueModel.FK_League_Users" FromRole="League" ToRole="User" />
+          <NavigationProperty Name="Teams" Relationship="MovieFantasyLeagueModel.FK_Teams_Leagues" FromRole="League" ToRole="Team" />
+          <NavigationProperty Name="Users" Relationship="MovieFantasyLeagueModel.UserLeagues" FromRole="League" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="MovieId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DraftCost" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DomesticGross" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="BoxOfficeMojoLink" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PosterLink" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SeasonId" Type="Guid" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsReplacement" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Season" Relationship="MovieFantasyLeagueModel.FK_Movies_Seasons" FromRole="Movy" ToRole="Season" />
+          <NavigationProperty Name="Teams" Relationship="MovieFantasyLeagueModel.TeamMovies" FromRole="Movy" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="SeasonId" />
+          </Key>
+          <Property Name="SeasonId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastUpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StartEdits" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndEdits" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Budget" Type="Int32" Nullable="false" />
+          <Property Name="ChampionTeamId" Type="Guid" />
+          <NavigationProperty Name="Movies" Relationship="MovieFantasyLeagueModel.FK_Movies_Seasons" FromRole="Season" ToRole="Movy" />
+          <NavigationProperty Name="Team" Relationship="MovieFantasyLeagueModel.FK_Seasons_Teams" FromRole="Season" ToRole="Team" />
+          <NavigationProperty Name="Teams" Relationship="MovieFantasyLeagueModel.FK_Teams_Seasons" FromRole="Season" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="LeagueId" Type="Guid" Nullable="false" />
+          <Property Name="SeasonId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="League" Relationship="MovieFantasyLeagueModel.FK_Teams_Leagues" FromRole="Team" ToRole="League" />
+          <NavigationProperty Name="Seasons" Relationship="MovieFantasyLeagueModel.FK_Seasons_Teams" FromRole="Team" ToRole="Season" />
+          <NavigationProperty Name="Season" Relationship="MovieFantasyLeagueModel.FK_Teams_Seasons" FromRole="Team" ToRole="Season" />
+          <NavigationProperty Name="User" Relationship="MovieFantasyLeagueModel.FK_Teams_Users" FromRole="Team" ToRole="User" />
+          <NavigationProperty Name="Movies" Relationship="MovieFantasyLeagueModel.TeamMovies" FromRole="Team" ToRole="Movy" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="ReceiveEmails" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Leagues" Relationship="MovieFantasyLeagueModel.FK_League_Users" FromRole="User" ToRole="League" />
+          <NavigationProperty Name="Teams" Relationship="MovieFantasyLeagueModel.FK_Teams_Users" FromRole="User" ToRole="Team" />
+          <NavigationProperty Name="Leagues1" Relationship="MovieFantasyLeagueModel.UserLeagues" FromRole="User" ToRole="League" />
+        </EntityType>
+        <Association Name="FK_League_Users">
+          <End Type="MovieFantasyLeagueModel.User" Role="User" Multiplicity="1" />
+          <End Type="MovieFantasyLeagueModel.League" Role="League" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="League">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Leagues">
+          <End Type="MovieFantasyLeagueModel.League" Role="League" Multiplicity="1" />
+          <End Type="MovieFantasyLeagueModel.Team" Role="Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="LeagueId" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movies_Seasons">
+          <End Type="MovieFantasyLeagueModel.Season" Role="Season" Multiplicity="1" />
+          <End Type="MovieFantasyLeagueModel.Movie" Role="Movy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="SeasonId" />
+            </Principal>
+            <Dependent Role="Movy">
+              <PropertyRef Name="SeasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seasons_Teams">
+          <End Type="MovieFantasyLeagueModel.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="MovieFantasyLeagueModel.Season" Role="Season" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Season">
+              <PropertyRef Name="ChampionTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Seasons">
+          <End Type="MovieFantasyLeagueModel.Season" Role="Season" Multiplicity="1" />
+          <End Type="MovieFantasyLeagueModel.Team" Role="Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="SeasonId" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="SeasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Users">
+          <End Type="MovieFantasyLeagueModel.User" Role="User" Multiplicity="1" />
+          <End Type="MovieFantasyLeagueModel.Team" Role="Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeamMovies">
+          <End Type="MovieFantasyLeagueModel.Movie" Role="Movy" Multiplicity="*" />
+          <End Type="MovieFantasyLeagueModel.Team" Role="Team" Multiplicity="*" />
+        </Association>
+        <Association Name="UserLeagues">
+          <End Type="MovieFantasyLeagueModel.League" Role="League" Multiplicity="*" />
+          <End Type="MovieFantasyLeagueModel.User" Role="User" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MovieFantasyLeagueModelStoreContainer" CdmEntityContainer="MovieFantasyLeagueEntities">
+          <EntitySetMapping Name="Leagues">
+            <EntityTypeMapping TypeName="MovieFantasyLeagueModel.League">
+              <MappingFragment StoreEntitySet="Leagues">
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies1">
+            <EntityTypeMapping TypeName="MovieFantasyLeagueModel.Movie">
+              <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="IsReplacement" ColumnName="IsReplacement" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+                <ScalarProperty Name="PosterLink" ColumnName="PosterLink" />
+                <ScalarProperty Name="BoxOfficeMojoLink" ColumnName="BoxOfficeMojoLink" />
+                <ScalarProperty Name="DomesticGross" ColumnName="DomesticGross" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="DraftCost" ColumnName="DraftCost" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seasons">
+            <EntityTypeMapping TypeName="MovieFantasyLeagueModel.Season">
+              <MappingFragment StoreEntitySet="Seasons">
+                <ScalarProperty Name="ChampionTeamId" ColumnName="ChampionTeamId" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="EndEdits" ColumnName="EndEdits" />
+                <ScalarProperty Name="StartEdits" ColumnName="StartEdits" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="MovieFantasyLeagueModel.Team">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MovieFantasyLeagueModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ReceiveEmails" ColumnName="ReceiveEmails" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TeamMovies" TypeName="MovieFantasyLeagueModel.TeamMovies" StoreEntitySet="TeamMovies">
+            <EndProperty Name="Team">
+              <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+            </EndProperty>
+            <EndProperty Name="Movy">
+              <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserLeagues" TypeName="MovieFantasyLeagueModel.UserLeagues" StoreEntitySet="UserLeagues">
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="League">
+              <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

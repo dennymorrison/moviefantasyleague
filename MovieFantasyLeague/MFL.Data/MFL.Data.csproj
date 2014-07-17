@@ -46,6 +46,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,20 +55,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="League.cs" />
-    <Compile Include="MFLContext.cs" />
-    <Compile Include="Movie.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="League.cs">
+      <DependentUpon>MFLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MFLModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MFLModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MFLModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MFLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MFLModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MFLModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Movie.cs">
+      <DependentUpon>MFLModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository\Contract\IMovieRepository.cs" />
     <Compile Include="Repository\Contract\IRepository.cs" />
+    <Compile Include="Repository\Contract\ISeasonRepository.cs" />
     <Compile Include="Repository\Mock\MockMovieRepository.cs" />
+    <Compile Include="Repository\Mock\MockSeasonRepository.cs" />
     <Compile Include="Repository\MovieRepository.cs" />
-    <Compile Include="Season.cs" />
+    <Compile Include="Repository\SeasonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Team.cs" />
+    <Compile Include="Season.cs">
+      <DependentUpon>MFLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Team.cs">
+      <DependentUpon>MFLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>MFLModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="MFLModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MFLModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MFLModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MFLModel.edmx</DependentUpon>
+      <LastGenOutput>MFLModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="MFLModel.edmx.diagram">
+      <DependentUpon>MFLModel.edmx</DependentUpon>
+    </None>
+    <None Include="MFLModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MFLModel.edmx</DependentUpon>
+      <LastGenOutput>MFLModel.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

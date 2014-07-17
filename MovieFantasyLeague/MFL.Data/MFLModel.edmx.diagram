@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2bbfa61bec674ac9b31199069b0ce75f" Name="Diagram1">
+        <EntityTypeShape EntityType="MovieFantasyLeagueModel.League" Width="1.5" PointX="3" PointY="1.625" />
+        <EntityTypeShape EntityType="MovieFantasyLeagueModel.Movie" Width="1.5" PointX="9.75" PointY="1.125" />
+        <EntityTypeShape EntityType="MovieFantasyLeagueModel.Season" Width="1.5" PointX="7.5" PointY="1" />
+        <EntityTypeShape EntityType="MovieFantasyLeagueModel.Team" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="MovieFantasyLeagueModel.User" Width="1.5" PointX="0.75" PointY="1.5" />
+        <AssociationConnector Association="MovieFantasyLeagueModel.FK_League_Users" />
+        <AssociationConnector Association="MovieFantasyLeagueModel.FK_Teams_Leagues" />
+        <AssociationConnector Association="MovieFantasyLeagueModel.FK_Movies_Seasons" />
+        <AssociationConnector Association="MovieFantasyLeagueModel.FK_Seasons_Teams" />
+        <AssociationConnector Association="MovieFantasyLeagueModel.FK_Teams_Seasons" />
+        <AssociationConnector Association="MovieFantasyLeagueModel.FK_Teams_Users" />
+        <AssociationConnector Association="MovieFantasyLeagueModel.TeamMovies" />
+        <AssociationConnector Association="MovieFantasyLeagueModel.UserLeagues" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

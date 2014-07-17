@@ -30,20 +30,10 @@ namespace MFL.Web.Controllers
 
         public ActionResult Details(Guid id)
         {
-            MovieDetailsModel model = new MovieDetailsModel();
+            IMovieRepository repository = GetMovieRepository();
+            var entity = repository.GetById(id);
 
-            model.Id = Guid.NewGuid();
-            model.Title = "Harry Potter";
-            model.ReleaseDate = new DateTime(2011, 5, 20);
-            model.BoxOfficeMojoLink = "http://www.boxofficemojo.com";
-            model.PosterLink = "http://ia.media-imdb.com/images/M/MV5BMTYwNTM5NDkzNV5BMl5BanBnXkFtZTYwODQ4MzY5._V1_SY317_CR8,0,214,317_AL_.jpg";
-            model.DomesticGross = 43523535;
-            model.DraftCost = 14;
-            model.Efficiency = model.DomesticGross / model.DraftCost;
-            model.IsReplacement = false;
-            model.Notes = "Some notes";
-            model.SeasonName = "Summer 2014";
-            model.SeasonId = Guid.NewGuid();
+            MovieDetailsModel model = new MovieDetailsModel(entity);
 
             return View(model);
         }

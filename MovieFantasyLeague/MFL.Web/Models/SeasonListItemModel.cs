@@ -1,13 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using MFL.Data;
 
 namespace MFL.Web.Models
 {
     public class SeasonListItemModel
     {
         public SeasonListItemModel() { }
+
+        public SeasonListItemModel(Season s)
+        {
+            Id = s.SeasonId;
+            Name = s.Name;
+            DateRange = s.StartDate.ToShortDateString() + " - " + s.EndDate.ToShortDateString();
+            ChampionId = s.ChampionTeamId.Value;
+        }
 
         public Guid Id { get; set; }
 

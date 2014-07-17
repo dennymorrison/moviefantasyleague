@@ -1,11 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using MFL.Data;
 
 namespace MFL.Web.Models
 {
     public class MovieDetailsModel
     {
         public MovieDetailsModel() { }
+
+        public MovieDetailsModel(Movie m)
+        {
+            Id = m.MovieId;
+            Title = m.Name;
+            ReleaseDate = m.ReleaseDate;
+            BoxOfficeMojoLink = m.BoxOfficeMojoLink;
+            PosterLink = m.PosterLink;
+            DomesticGross = m.DomesticGross;
+            DraftCost = m.DraftCost;
+            IsReplacement = m.IsReplacement;
+            Notes = m.Note;
+            SeasonId = m.Season.SeasonId;
+            SeasonName = m.Season.Name;
+
+            Efficiency = DomesticGross / DraftCost;
+        }
 
         public Guid Id { get; set; }
 

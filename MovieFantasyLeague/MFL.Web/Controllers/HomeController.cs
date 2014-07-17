@@ -8,25 +8,23 @@ using MFL.Web.Models;
 namespace MFL.Web.Controllers
 {
     [RequireHttps]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
             HomeModel model = new HomeModel();
 
+            var repository = GetSeasonRepository();
+            var teamEntities = repository.GetLeagueTeamsForSeason(GetPlayerLeagueId(), GetCurrentSeasonId());
+
             List<StandingsEntry> standings = new List<StandingsEntry>();
 
-            for (int i = 0; i < 5; i++ )
+            foreach(var t in teamEntities)
             {
-                StandingsEntry s = new StandingsEntry();
-                s.Name = "denny " + i;
-                s.Progess = i  + " / " + 5;
-                s.Total = i * 100;
-
-                standings.Add(s);
+                standings.Add(new StandingsEntry(t));
             }
 
-            model.Standings.SeasonName = "Summer 2014";
+            model.Standings.SeasonName = teamEntities.First().Season.Name;
             model.Standings.Standings = standings;
 
             return View(model);
@@ -35,13 +33,6 @@ namespace MFL.Web.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }

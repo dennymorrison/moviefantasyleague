@@ -12,23 +12,23 @@ namespace MFL.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Team
+    public partial class User
     {
-        public Team()
+        public User()
         {
-            this.Seasons = new HashSet<Season>();
-            this.Movies = new HashSet<Movie>();
+            this.Leagues = new HashSet<League>();
+            this.Teams = new HashSet<Team>();
+            this.Leagues1 = new HashSet<League>();
         }
     
-        public System.Guid TeamId { get; set; }
         public System.Guid UserId { get; set; }
-        public System.Guid LeagueId { get; set; }
-        public System.Guid SeasonId { get; set; }
+        public string Name { get; set; }
+        public string EmailAddress { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool ReceiveEmails { get; set; }
     
-        public virtual League League { get; set; }
-        public virtual ICollection<Season> Seasons { get; set; }
-        public virtual Season Season { get; set; }
-        public virtual User User { get; set; }
-        public virtual ICollection<Movie> Movies { get; set; }
+        public virtual ICollection<League> Leagues { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
+        public virtual ICollection<League> Leagues1 { get; set; }
     }
 }

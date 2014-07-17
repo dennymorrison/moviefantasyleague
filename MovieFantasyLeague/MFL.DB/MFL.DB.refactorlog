@@ -28,4 +28,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="UserId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="b2e3565d-ee4f-4335-9ef6-cd1c0d31c63d" ChangeDateTime="07/17/2014 15:22:41">
+    <Property Name="ElementName" Value="[dbo].[League].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[League]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LeagueId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="857f7d8a-fb32-4279-b99a-82220ac6369a" ChangeDateTime="07/17/2014 15:24:20">
+    <Property Name="ElementName" Value="[dbo].[Leagues].[Owner]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Leagues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OwnerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ca9ab527-e6b9-4c81-a882-0b53e3199246" ChangeDateTime="07/17/2014 15:25:15">
+    <Property Name="ElementName" Value="[dbo].[UserLeagues].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserLeagues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0ee5bd58-ec3a-4dfa-86ed-ee9f7aca9a7e" ChangeDateTime="07/17/2014 15:26:49">
+    <Property Name="ElementName" Value="[dbo].[Teams].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Teams]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6dcc29c6-abf2-4ec1-ab0d-36f47d8f2e48" ChangeDateTime="07/17/2014 15:31:07">
+    <Property Name="ElementName" Value="[dbo].[TeamMovies].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TeamMovies]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamId" />
+  </Operation>
 </Operations>

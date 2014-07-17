@@ -8,7 +8,7 @@
     [StartEdits] DATE NOT NULL, 
     [EndEdits] DATE NOT NULL, 
     [Note] NTEXT NULL, 
-    [ChampionId] UNIQUEIDENTIFIER NULL, 
     [Budget] INT NOT NULL, 
-    CONSTRAINT [FK_Seasons_Users] FOREIGN KEY ([ChampionId]) REFERENCES [Users]([UserId])
+    [ChampionTeamId] UNIQUEIDENTIFIER NULL, 
+    CONSTRAINT [FK_Seasons_Teams] FOREIGN KEY ([ChampionTeamId]) REFERENCES [Teams]([TeamId]) 
 )

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MFL.Data;
 
 namespace MFL.Web.Models
 {
@@ -11,6 +12,38 @@ namespace MFL.Web.Models
         {
             Standings = new StandingsModel();
             PlayerSummaries = new List<PlayerTeamSummaryModel>();
+        }
+
+        public SeasonDetailsModel(Season s)
+            : this()
+        {
+            Id = s.SeasonId;
+            Name = s.Name;
+            Notes = s.Note;
+            StartDate = s.StartDate;
+            EndDate = s.EndDate;
+            StartEditDate = s.StartEdits;
+            EndEditDate = s.EndEdits;
+            EndTotalUpdateDate = s.LastUpdateDate;
+            Budget = s.Budget;
+            ChampionId = s.ChampionTeamId.Value;
+
+            if (StartDate >= DateTime.Now && EndDate <= DateTime.Now)
+            {
+                Status = SeasonStatus.OnGoing;
+            }
+            else if (EndDate > DateTime.Now)
+            {
+                Status = SeasonStatus.Completed;
+            }
+            else if (StartEditDate >= DateTime.Now && EndEditDate <= DateTime.Now)
+            {
+                Status = SeasonStatus.DraftPeriod;
+            }
+            else
+            {
+                Status = SeasonStatus.Planned;
+            }
         }
 
         public Guid Id { get; set; }

@@ -12,9 +12,9 @@ namespace MFL.Web.Models
 
         public MovieListItemModel(Movie m)
         {
-            Id = m.MovieID;
-            Title = m.Title;
-            SeasonId = m.Season.SeasonID;
+            Id = m.MovieId;
+            Title = m.Name;
+            SeasonId = m.Season.SeasonId;
             SeasonName = m.Season.Name;
             DraftCost = m.DraftCost;
             IsReplacement = m.IsReplacement;

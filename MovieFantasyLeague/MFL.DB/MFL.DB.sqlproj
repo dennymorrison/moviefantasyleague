@@ -68,8 +68,10 @@
     <Build Include="Tables\Users.sql" />
     <Build Include="Tables\Seasons.sql" />
     <Build Include="Tables\Movies.sql" />
-    <Build Include="Tables\UsersMovies.sql" />
-    <Build Include="Tables\UserSeasons.sql" />
+    <Build Include="Tables\Leagues.sql" />
+    <Build Include="Tables\UserLeagues.sql" />
+    <Build Include="Tables\Teams.sql" />
+    <Build Include="Tables\TeamMovies.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MFL.DB.refactorlog" />

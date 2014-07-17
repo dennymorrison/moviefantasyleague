@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MFL.Web.Models;
 
 namespace MFL.Web.Controllers
 {
     [RequireHttps]
-    public class SeasonController : Controller
+    public class SeasonController : BaseController
     {
         public ActionResult Index()
         {
             SeasonsListModel model = new SeasonsListModel();
-
             List<SeasonListItemModel> seasons = new List<SeasonListItemModel>();
 
-            seasons.Add(new SeasonListItemModel() { Name = "Summer 2014", DateRange = "4/4/2014 - 9/5/2014", Champion = "Heather" });
+            var repository = GetSeasonRepository();
+            var entities = repository.List(-1, -1);
+
+            foreach(var s in entities)
+            {
+                seasons.Add(new SeasonListItemModel(s));
+            }
 
             model.Seasons = seasons;
 
@@ -25,24 +28,23 @@ namespace MFL.Web.Controllers
 
         public ActionResult Details(Guid id)
         {
-            SeasonDetailsModel model = new SeasonDetailsModel();
+            var repository = GetSeasonRepository();
+            var entity = repository.GetById(id);
+            var teamEntities = repository.GetLeagueTeamsForSeason(GetPlayerLeagueId(), id);
 
-            model.Id = Guid.NewGuid();
-            model.Name = "Summer 2014";
-            model.Notes = "Some notes";
-            model.StartDate = new DateTime(2014, 4, 4);
-            model.EndDate = new DateTime(2014, 9, 5);
-            model.StartEditDate = new DateTime(2014, 3, 20);
-            model.EndEditDate = new DateTime(2014, 4, 4);
-            model.EndTotalUpdateDate = new DateTime(2014, 9, 6);
-            model.Budget = 100;
-            model.Champion = "";
-            model.Status = SeasonStatus.OnGoing;
-
+            SeasonDetailsModel model = new SeasonDetailsModel(entity);
             List<StandingsEntry> standings = new List<StandingsEntry>();
-            standings.Add(new StandingsEntry() { Name = "Denny", Progess = "3/4", Total = 242424 });
-            standings.Add(new StandingsEntry() { Name = "Heather", Progess = "2/5", Total = 13141 });
-            model.Standings = new StandingsModel() { SeasonName = "Summer 2014", Standings = standings };
+            List<PlayerTeamSummaryModel> teamSummaries = new List<PlayerTeamSummaryModel>();
+
+            foreach(var t in teamEntities)
+            {
+                standings.Add(new StandingsEntry(t));
+                teamSummaries.Add(new PlayerTeamSummaryModel(t));
+            }
+
+            model.Standings = new StandingsModel() { SeasonName = model.Name, Standings = standings };
+
+            model.PlayerSummaries = teamSummaries;
 
             return View(model);
         }

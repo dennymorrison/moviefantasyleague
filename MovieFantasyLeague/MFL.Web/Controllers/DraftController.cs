@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace MFL.Web.Controllers
 {
     [RequireHttps]
-    public class DraftController : Controller
+    public class DraftController : BaseController
     {
         public ActionResult Index()
         {
