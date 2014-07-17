@@ -24,6 +24,7 @@ namespace MFL.Web.Models
             }
 
             Total = total;
+            Progess = openMovies + "/" + movieCount;
         }
 
         public string Name { get; set; }
