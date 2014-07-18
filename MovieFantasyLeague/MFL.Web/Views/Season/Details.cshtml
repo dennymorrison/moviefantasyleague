@@ -22,19 +22,19 @@
 else if(Model.Status == MFL.Web.Models.SeasonStatus.DraftPeriod)
 {
     <div class="message">
-        <span>This season's draft is currently happening!</span> Be sure to visit the <a href="@Url.Action("Index", "Draft", new { seasonId = Model.Id })">Draft Page</a> to pick your team of movies before @Model.EndEditDate.ToShortDateString() .
+        <span>This season's draft is currently happening!</span> Be sure to visit the <a href="@Url.Action("Index", "Draft", new { seasonId = Model.Id })">Draft Page</a> to pick your team of movies before @Model.EndEditDate.ToShortDateString().
     </div>
 }
 else if(Model.Status == MFL.Web.Models.SeasonStatus.OnGoing)
 {
     <div class="message">
-        The season is ongoing, grosses are updated nightly from <a href="http://www.boxofficemojo.com">Box Office Mojo</a> until @Model.EndTotalUpdateDate.ToShortDateString() .
+        The season is ongoing, grosses will be updated nightly from <a href="http://www.boxofficemojo.com">Box Office Mojo</a> until @Model.EndTotalUpdateDate.ToShortDateString().
     </div>
 }
 else // Planned
 {
     <div class="bulletin">
-        This season has been setup, but it hasn't started yet. You can begin making your movie selections on @Model.StartEditDate.ToShortDateString() .
+        This season has been setup, but it hasn't started yet. You can begin making your movie selections on @Model.StartEditDate.ToShortDateString().
     </div>
 }
 

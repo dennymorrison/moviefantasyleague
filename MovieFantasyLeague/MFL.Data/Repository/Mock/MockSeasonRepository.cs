@@ -67,14 +67,14 @@ namespace MFL.Data.Repository.Mock
             if (seasonId == _completedSeasonId)
             {
                 t.Season = new Season() { SeasonId = _completedSeason.SeasonId, Name = _completedSeason.Name };
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "Harry Potter", ReleaseDate = _completedSeason.EndDate.AddDays(-20), DomesticGross = 41225 });
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "James Bond", ReleaseDate = _completedSeason.EndDate.AddDays(-23), DomesticGross = 5454514 });
+                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "Harry Potter", ReleaseDate = _completedSeason.EndDate.AddDays(-20), DomesticGross = 412254445 });
+                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "James Bond", ReleaseDate = _completedSeason.EndDate.AddDays(-23), DomesticGross = 545444514 });
             }
             else if (seasonId == _draftingSeasonId)
             {
                 t.Season = new Season() { SeasonId = _draftingSeason.SeasonId, Name = _draftingSeason.Name };
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "Harry Potter", ReleaseDate = _draftingSeason.EndDate.AddDays(-20), DomesticGross = 41225 });
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "James Bond", ReleaseDate = _draftingSeason.EndDate.AddDays(-20), DomesticGross = 5454514 });
+                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "Harry Potter", ReleaseDate = _draftingSeason.EndDate.AddDays(-20), DomesticGross = 0 });
+                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "James Bond", ReleaseDate = _draftingSeason.EndDate.AddDays(-20), DomesticGross = 0 });
             }
             else if(seasonId == _onGoingSeasonId)
             {
@@ -85,8 +85,6 @@ namespace MFL.Data.Repository.Mock
             else
             {
                 t.Season = new Season() { SeasonId = _plannedSeason.SeasonId, Name = _plannedSeason.Name };
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "Harry Potter", ReleaseDate = _plannedSeason.EndDate.AddDays(-20), DomesticGross = 41225 });
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "James Bond", ReleaseDate = _plannedSeason.EndDate.AddDays(-20), DomesticGross = 5454514 });
             }                       
 
             t.Movies = movies;
@@ -146,7 +144,7 @@ namespace MFL.Data.Repository.Mock
             get
             {
                 Season result = new Season();
-                result.SeasonId = _onGoingSeasonId;
+                result.SeasonId = _draftingSeasonId;
                 result.Name = "Season with Active Draft";
                 result.StartDate = DateTime.Now.AddMonths(1);
                 result.EndDate = DateTime.Now.AddMonths(6);
@@ -164,7 +162,7 @@ namespace MFL.Data.Repository.Mock
             get
             {
                 Season result = new Season();
-                result.SeasonId = _onGoingSeasonId;
+                result.SeasonId = _completedSeasonId;
                 result.Name = "Completed Season";
                 result.StartDate = DateTime.Now.AddMonths(-12);
                 result.EndDate = DateTime.Now.AddMonths(-6);
