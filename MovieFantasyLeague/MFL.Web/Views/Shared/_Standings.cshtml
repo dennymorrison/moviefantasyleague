@@ -22,7 +22,7 @@ else
         {
             <tr>
                 <td>
-                    @s.Name
+                    <a href="@Url.Action("Details", "Player", new { id = s.UserId })">@s.Name</a>
                 </td>
                 <td>
                     @s.Progess

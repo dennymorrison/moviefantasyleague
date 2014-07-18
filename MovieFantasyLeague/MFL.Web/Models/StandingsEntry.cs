@@ -9,6 +9,7 @@ namespace MFL.Web.Models
 
         public StandingsEntry(Team t)
         {
+            UserId = t.User.UserId;
             Name = t.User.Name;
 
             int movieCount = t.Movies.Count;
@@ -26,6 +27,8 @@ namespace MFL.Web.Models
             Total = total;
             Progess = openMovies + "/" + movieCount;
         }
+
+        public Guid UserId { get; set; }
 
         public string Name { get; set; }
 

@@ -22,7 +22,7 @@
 else if(Model.Status == MFL.Web.Models.SeasonStatus.DraftPeriod)
 {
     <div class="message">
-        <span>This season's draft is currently happening!</span> Be sure to visit the <a href="">Draft Page</a> to pick your team of movies before @Model.EndEditDate.ToShortDateString() .
+        <span>This season's draft is currently happening!</span> Be sure to visit the <a href="@Url.Action("Index", "Draft", new { seasonId = Model.Id })">Draft Page</a> to pick your team of movies before @Model.EndEditDate.ToShortDateString() .
     </div>
 }
 else if(Model.Status == MFL.Web.Models.SeasonStatus.OnGoing)
