@@ -25,6 +25,7 @@ namespace MFL.Web.Controllers
 
             model.Standings.SeasonName = teamEntities.First().Season.Name;
             model.Standings.Standings = standings;
+            model.Standings.IsHomepage = true;
 
             return View(model);
         }

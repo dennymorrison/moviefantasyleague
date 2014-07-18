@@ -6,6 +6,13 @@
 
 <h2>@Model.Name</h2>
 
+@if(!string.IsNullOrEmpty(Model.Notes))
+{
+    <div class="bulletin">
+        <span>Alert: </span>@Model.Notes
+    </div>
+}
+
 @if(Model.Status == MFL.Web.Models.SeasonStatus.Completed)
 {
     <div class="money">
@@ -15,29 +22,25 @@
 else if(Model.Status == MFL.Web.Models.SeasonStatus.DraftPeriod)
 {
     <div class="message">
-        
+        The draft is currently happening! Be sure to visit the <a href="">Draft Page</a> to pick your team of movies before @Model.EndEditDate.ToShortDateString() .
     </div>
 }
 else if(Model.Status == MFL.Web.Models.SeasonStatus.OnGoing)
 {
     <div class="message">
-
+        The season is ongoing, grosses are updated nightly from <a href="http://www.boxofficemojo.com">Box Office Mojo</a> until @Model.EndTotalUpdateDate.ToShortDateString() .
     </div>
 }
-else
+else // Planned
 {
     <div class="bulletin">
-
+        You can begin making your movie selections on @Model.StartEditDate.ToShortDateString() .
     </div>
 }
 
 @{Html.RenderPartial("_Standings", Model.Standings);}
 
-<div class="container">
-
-</div>
-
-<h2>Player by Player Summary</h2>
+<h3>The Teams</h3>
 
 @foreach(var p in Model.PlayerSummaries)
 {
