@@ -77,6 +77,7 @@ namespace MFL.Data.Repository.Mock
                 result.PosterLink = "http://ia.media-imdb.com/images/M/MV5BMTY4NTIwODg0N15BMl5BanBnXkFtZTcwOTc0MjEzMw@@._V1_SY317_CR0,0,214,317_AL_.jpg";
                 result.DraftCost = 42;
                 result.DomesticGross = 547845574;
+                result.Season = new Season() { SeasonId = MockSeasonRepository.OnGoingSeasonId, Name = MockSeasonRepository.OnGoingSeason.Name };
 
                 return result;
             }
@@ -96,6 +97,7 @@ namespace MFL.Data.Repository.Mock
                 result.DraftCost = 10;
                 result.Note = "Note on the movie.";
                 result.DomesticGross = 41411313;
+                result.Season = new Season() { SeasonId = MockSeasonRepository.OnGoingSeasonId, Name = MockSeasonRepository.OnGoingSeason.Name };
 
                 return result;
             }
@@ -114,6 +116,7 @@ namespace MFL.Data.Repository.Mock
                 result.PosterLink = "http://ia.media-imdb.com/images/M/MV5BMjA0ODEzMTc1Nl5BMl5BanBnXkFtZTcwODM2MjAxNA@@._V1_SX214_AL_.jpg";
                 result.DraftCost = 12;
                 result.DomesticGross = 1577981;
+                result.Season = new Season() { SeasonId = MockSeasonRepository.OnGoingSeasonId, Name = MockSeasonRepository.OnGoingSeason.Name };
 
                 return result;
             }
@@ -132,6 +135,7 @@ namespace MFL.Data.Repository.Mock
                 result.PosterLink = "http://ia.media-imdb.com/images/M/MV5BMjE0ODk2NjczOV5BMl5BanBnXkFtZTYwNDQ0NDg4._V1_SY317_CR4,0,214,317_AL_.jpg";
                 result.DraftCost = 8;
                 result.DomesticGross = 649849848;
+                result.Season = new Season() { SeasonId = MockSeasonRepository.OnGoingSeasonId, Name = MockSeasonRepository.OnGoingSeason.Name };
 
                 return result;
             }
