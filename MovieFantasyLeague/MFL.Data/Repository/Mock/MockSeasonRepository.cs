@@ -74,7 +74,7 @@ namespace MFL.Data.Repository.Mock
 
             Team t1 = new Team();
             t1.LeagueId = leagueId;
-            t1.SeasonId = seasonId;
+            t1.Season = new Season() { SeasonId = seasonId, Name = "Summer 2014" };
             t1.TeamId = Guid.NewGuid();
             t1.User = new User() { UserId = Guid.NewGuid(), Name = "Heather" };
 
