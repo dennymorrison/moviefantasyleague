@@ -13,10 +13,13 @@ namespace MFL.Web.Models
             Name = s.Name;
             DateRange = s.StartDate.ToShortDateString() + " - " + s.EndDate.ToShortDateString();
             
-            if(s.Team.User.UserId !=null)
+            if(s.Team !=null)
             {
-                ChampionId = s.Team.User.UserId;
-                Champion = s.Team.User.Name;
+                if (s.Team.User != null)
+                {
+                    ChampionId = s.Team.User.UserId;
+                    Champion = s.Team.User.Name;
+                }
             }
         }
 
