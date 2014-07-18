@@ -21,7 +21,7 @@ namespace MFL.Data.Repository.Mock
                 result = _onGoingSeason;
             else if (id == _draftingSeasonId)
                 result = _draftingSeason;
-            else
+            else if (id == _completedSeasonId)
                 result = _completedSeason;
 
             return result;

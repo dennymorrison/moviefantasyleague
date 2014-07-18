@@ -12,7 +12,12 @@ namespace MFL.Web.Models
             Id = s.SeasonId;
             Name = s.Name;
             DateRange = s.StartDate.ToShortDateString() + " - " + s.EndDate.ToShortDateString();
-            ChampionId = s.ChampionTeamId.Value;
+            
+            if(s.Team.User.UserId !=null)
+            {
+                ChampionId = s.Team.User.UserId;
+                Champion = s.Team.User.Name;
+            }
         }
 
         public Guid Id { get; set; }
