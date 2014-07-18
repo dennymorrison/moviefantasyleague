@@ -218,6 +218,7 @@
     <Compile Include="Controllers\DraftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\SeasonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -298,6 +299,8 @@
     <Content Include="Views\Season\Details.cshtml" />
     <Content Include="Views\Draft\Index.cshtml" />
     <Content Include="Views\Shared\_PlayerTeamSummary.cshtml" />
+    <Content Include="Views\Player\Index.cshtml" />
+    <Content Include="Views\Player\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

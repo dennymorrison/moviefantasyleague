@@ -33,6 +33,17 @@ namespace MFL.Web.Controllers
             }
         }
 
+        protected IPlayerRepository PlayerRepository
+        {
+            get
+            {
+                if (_useMock)
+                    return new MockPlayerRepository();
+                else
+                    return new PlayerRepository();
+            }
+        }
+
         protected Guid GetPlayerLeagueId()
         {
             if (_useMock)
