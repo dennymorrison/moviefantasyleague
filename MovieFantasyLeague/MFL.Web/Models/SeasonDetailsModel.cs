@@ -28,11 +28,11 @@ namespace MFL.Web.Models
             Budget = s.Budget;
             ChampionId = s.ChampionTeamId.Value;
 
-            if (StartDate >= DateTime.Now && EndDate >= DateTime.Now)
+            if (StartDate <= DateTime.Now && EndDate >= DateTime.Now)
             {
                 Status = SeasonStatus.OnGoing;
             }
-            else if (StartDate < DateTime.Now)
+            else if (StartDate > DateTime.Now)
             {
                 Status = SeasonStatus.Planned;
             }
