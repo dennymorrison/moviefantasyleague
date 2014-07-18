@@ -26,7 +26,14 @@ namespace MFL.Web.Models
             EndEditDate = s.EndEdits;
             EndTotalUpdateDate = s.LastUpdateDate;
             Budget = s.Budget;
-            Champion = s.Team.User.Name;
+
+            if(s.Team!=null)
+            {
+                if(s.Team.User!=null)
+                {
+                    Champion = s.Team.User.Name;
+                }
+            }            
 
             if (StartDate <= DateTime.Now && EndDate >= DateTime.Now)
             {
