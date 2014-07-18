@@ -14,7 +14,19 @@ namespace MFL.Web.Controllers
         {
             HomeModel model = new HomeModel();
 
-            var teamEntities = SeasonRepository.GetLeagueTeamsForSeason(GetPlayerLeagueId(), GetCurrentSeasonId());
+            var currentSeason = SeasonRepository.GetSeasonForHomepage();
+            var teamEntities = SeasonRepository.GetLeagueTeamsForSeason(GetPlayerLeagueId(), currentSeason.SeasonId);
+            var plannedSeason = SeasonRepository.GetPlannedSeason();
+
+            if(plannedSeason !=null)
+            {
+                model.PlannedSeason = new SeasonDetailsModel(plannedSeason);
+                model.IsNewSeasonPlanned = true;
+            }
+            else
+            {
+                model.IsNewSeasonPlanned = false;
+            }
 
             List<StandingsEntry> standings = new List<StandingsEntry>();
 

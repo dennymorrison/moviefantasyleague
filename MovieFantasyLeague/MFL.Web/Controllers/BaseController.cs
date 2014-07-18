@@ -46,19 +46,5 @@ namespace MFL.Web.Controllers
                 return Guid.NewGuid();
             }
         }
-
-        protected Guid GetCurrentSeasonId()
-        {
-            if (_useMock)
-            {
-                return Guid.NewGuid();
-            }
-            else
-            {
-                // Figure out the season that we should be after....dates of seasons current date etc.
-
-                return Guid.NewGuid();
-            }
-        }
     }
 }

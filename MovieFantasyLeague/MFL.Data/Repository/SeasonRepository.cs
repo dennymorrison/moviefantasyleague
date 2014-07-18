@@ -126,5 +126,18 @@ namespace MFL.Data.Repository
 
             return results;
         }
+        public Season GetSeasonForHomepage()
+        {
+            Season result = new Season();
+
+            return result;
+        }
+
+        public Season GetPlannedSeason()
+        {
+            Season result = new Season();
+
+            return result;
+        }
     }
 }

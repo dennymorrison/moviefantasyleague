@@ -10,8 +10,13 @@ namespace MFL.Web.Models
         public HomeModel() 
         {
             Standings = new StandingsModel();
+            PlannedSeason = new SeasonDetailsModel();
         }
 
         public StandingsModel Standings { get; set; }
+
+        public SeasonDetailsModel PlannedSeason { get; set; }
+
+        public bool IsNewSeasonPlanned { get; set; }
     }
 }

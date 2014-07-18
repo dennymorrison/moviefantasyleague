@@ -8,7 +8,9 @@ namespace MFL.Data.Repository.Contract
 {
     public interface ISeasonRepository: IRepository<Season>
     {
-        //GetStandingsForSeason(Guid seasonId);
+        Season GetSeasonForHomepage();
+
+        Season GetPlannedSeason();
 
         IList<Team> GetLeagueTeamsForSeason(Guid leagueId, Guid seasonId);
     }

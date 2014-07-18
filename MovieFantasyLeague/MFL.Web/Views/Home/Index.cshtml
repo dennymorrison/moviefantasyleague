@@ -11,4 +11,11 @@
     <p><a href="@Url.Action("About", "Home")" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
 </div>
 
+@if(Model.IsNewSeasonPlanned)
+{
+    <div class="message">
+        <span>A new season is coming!</span> @Model.PlannedSeason.Name is coming soon, the draft will open on @Model.PlannedSeason.StartEditDate!
+    </div>
+}
+
 @{Html.RenderPartial("_Standings", Model.Standings);}

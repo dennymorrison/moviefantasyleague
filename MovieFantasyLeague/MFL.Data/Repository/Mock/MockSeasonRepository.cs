@@ -103,6 +103,16 @@ namespace MFL.Data.Repository.Mock
             return results;
         }
 
+        public Season GetSeasonForHomepage()
+        {
+            return OnGoingSeason;
+        }
+
+        public Season GetPlannedSeason()
+        {
+            return PlannedSeason;
+        }
+
         public static Season PlannedSeason
         {
             get
