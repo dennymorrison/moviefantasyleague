@@ -77,11 +77,14 @@
       <DependentUpon>MFLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\Contract\IMovieRepository.cs" />
+    <Compile Include="Repository\Contract\IPlayerRepository.cs" />
     <Compile Include="Repository\Contract\IRepository.cs" />
     <Compile Include="Repository\Contract\ISeasonRepository.cs" />
     <Compile Include="Repository\Mock\MockMovieRepository.cs" />
+    <Compile Include="Repository\Mock\MockPlayerRepository.cs" />
     <Compile Include="Repository\Mock\MockSeasonRepository.cs" />
     <Compile Include="Repository\MovieRepository.cs" />
+    <Compile Include="Repository\PlayerRepository.cs" />
     <Compile Include="Repository\SeasonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Season.cs">

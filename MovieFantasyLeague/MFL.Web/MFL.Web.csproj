@@ -232,6 +232,9 @@
     <Compile Include="Models\MovieDetailsModel.cs" />
     <Compile Include="Models\MoviesListModel.cs" />
     <Compile Include="Models\MovieTeamListModel.cs" />
+    <Compile Include="Models\PlayerDetailsModel.cs" />
+    <Compile Include="Models\PlayerListItemModel.cs" />
+    <Compile Include="Models\PlayerListModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\PlayerTeamSummaryModel.cs" />
     <Compile Include="Models\SeasonDetailsModel.cs" />
