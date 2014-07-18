@@ -23,6 +23,7 @@ namespace MFL.Web.Controllers
                 standings.Add(new StandingsEntry(t));
             }
 
+            model.Standings.SeasonId = teamEntities.First().Season.SeasonId;
             model.Standings.SeasonName = teamEntities.First().Season.Name;
             model.Standings.Standings = standings;
             model.Standings.IsHomepage = true;
