@@ -13,8 +13,13 @@ namespace MFL.Data.Repository.Mock
             result.ChampionTeamId = Guid.NewGuid();
             result.StartDate = new DateTime(2013, 5, 1);
             result.EndDate = new DateTime(2013, 9, 20);
+            result.StartEdits = new DateTime(2013, 4, 15);
+            result.EndEdits = new DateTime(2013, 4, 30);
+            result.LastUpdateDate = new DateTime(2013, 9, 21);
             result.Budget = 100;
-
+            result.Note = "2 Guns was substituted for 300: Rise of an Emprie.";
+            result.SeasonId = id;
+            result.Team = new Team() { User = new User() { UserId = Guid.NewGuid(), Name = "Mike" } };
 
             return result;
         }
