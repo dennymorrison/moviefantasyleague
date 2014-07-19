@@ -1,6 +1,21 @@
 ﻿@model MFL.Web.Models.PlayerTeamSummaryModel
 
-<h4>@Model.Player</h4>
+@if(Model.ShowPlayerName)
+{ 
+    <h4>@Model.Player</h4>
+}
+
+@if (Model.ShowSeasonName)
+{
+    <h4><a href="@Url.Action("Season", "Details", new { id = Model.Season.Id })">@Model.Season.Name</a></h4>
+}
+
+@if(Model.ShowSeasonChampion)
+{
+    <div class="money">
+        <span>Champion:</span> @Model.ChampionName
+    </div>
+}
 
 <table class="tablesaw table-striped" data-mode="stack">
     <thead>

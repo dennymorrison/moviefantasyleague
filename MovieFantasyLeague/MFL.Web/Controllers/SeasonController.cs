@@ -37,11 +37,11 @@ namespace MFL.Web.Controllers
             foreach(var t in teamEntities)
             {
                 standings.Add(new StandingsEntry(t));
-                teamSummaries.Add(new PlayerTeamSummaryModel(t));
+                teamSummaries.Add(new PlayerTeamSummaryModel(t) { ShowPlayerName = true, ShowSeasonName = false });
             }
 
             model.Standings = new StandingsModel() { SeasonName = model.Name, Standings = standings };
-            model.PlayerSummaries = teamSummaries;
+            model.PlayerSummaries = teamSummaries;            
 
             return View(model);
         }

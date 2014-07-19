@@ -303,7 +303,7 @@
     <Content Include="Views\Draft\Index.cshtml" />
     <Content Include="Views\Shared\_PlayerTeamSummary.cshtml" />
     <Content Include="Views\Player\Index.cshtml" />
-    <Content Include="Views\Player\Details.cshtml" />
+    <Content Include="Views\Player\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

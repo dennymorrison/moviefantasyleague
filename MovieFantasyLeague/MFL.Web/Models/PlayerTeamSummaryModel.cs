@@ -35,6 +35,23 @@ namespace MFL.Web.Models
                 }
             }
 
+            if (t.Season != null)
+            {
+                if (t.Season.Team != null)
+                {
+                    if (t.Season.Team.User != null)
+                    {
+                        ChampionId = t.Season.Team.User.UserId;
+                        ChampionName = t.Season.Team.User.Name;
+                        ShowSeasonChampion = true;
+                    }
+                }
+            }
+            else
+            {
+                ShowSeasonChampion = false;
+            }
+
             Movies = movies;
             Total = total;
         }
@@ -50,5 +67,15 @@ namespace MFL.Web.Models
         public decimal Total { get; set; }
 
         public decimal TeamEfficiency { get; set; }
+
+        public bool ShowPlayerName { get; set; }
+
+        public bool ShowSeasonName { get; set; }
+
+        public bool ShowSeasonChampion { get; set; }
+
+        public Guid ChampionId { get; set; }
+
+        public string ChampionName { get; set; }
     }
 }

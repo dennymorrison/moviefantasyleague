@@ -20,6 +20,7 @@ namespace MFL.Data.Repository.Mock
         public static readonly Guid PulpId = new Guid("cfbfac9d-bf46-4ad8-b9f0-fdcf2ed83a23");
 
         public static readonly Guid LeagueId = new Guid("8518119b-c381-4199-9933-90a61bbee037");
+        public static readonly Guid ChampionTeamId = new Guid("e3bde346-484c-4e8a-87c4-bc37df6dfed5");
 
         public static Team GetTeamForPlayerAndSeason(Guid playerId, Guid seasonId)
         {
@@ -44,7 +45,7 @@ namespace MFL.Data.Repository.Mock
             List<Movie> movies = new List<Movie>();
             if (seasonId == MockDataSource.CompletedSeasonId)
             {
-                result.Season = new Season() { SeasonId = MockDataSource.CompletedSeason.SeasonId, Name = MockDataSource.CompletedSeason.Name };
+                result.Season = new Season() { SeasonId = MockDataSource.CompletedSeason.SeasonId, Name = MockDataSource.CompletedSeason.Name, Team = ChampionTeam };
                 movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "Harry Potter", ReleaseDate = MockDataSource.CompletedSeason.EndDate.AddDays(-20), DomesticGross = 412254445 });
                 movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "James Bond", ReleaseDate = MockDataSource.CompletedSeason.EndDate.AddDays(-23), DomesticGross = 545444514 });
             }
@@ -258,6 +259,19 @@ namespace MFL.Data.Repository.Mock
                 result.DraftCost = 8;
                 result.DomesticGross = 649849848;
                 result.Season = new Season() { SeasonId = MockDataSource.OnGoingSeasonId, Name = MockDataSource.OnGoingSeason.Name };
+
+                return result;
+            }
+        }
+
+        public static Team ChampionTeam
+        {
+            get
+            {
+                Team result = new Team();
+
+                result.TeamId = ChampionTeamId;
+                result.User = new User() { UserId = DennyId, Name = Denny.Name };                
 
                 return result;
             }

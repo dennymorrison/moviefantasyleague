@@ -25,7 +25,7 @@ namespace MFL.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Details(Guid id)
+        public ActionResult History(Guid id)
         {
             PlayerDetailsModel model = new PlayerDetailsModel(PlayerRepository.GetById(id));
 
@@ -34,7 +34,7 @@ namespace MFL.Web.Controllers
             List<PlayerTeamSummaryModel> teams = new List<PlayerTeamSummaryModel>();
             foreach(var t in teamEntities)
             {
-                teams.Add(new PlayerTeamSummaryModel(t));
+                teams.Add(new PlayerTeamSummaryModel(t) { ShowSeasonName = true, ShowPlayerName = false });
             }
 
             model.Teams = teams;
