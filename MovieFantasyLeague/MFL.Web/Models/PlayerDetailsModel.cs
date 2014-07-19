@@ -1,16 +1,18 @@
-﻿using System;
+﻿using MFL.Data;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MFL.Data;
 
 namespace MFL.Web.Models
 {
     public class PlayerDetailsModel
     {
-        public PlayerDetailsModel() { }
+        public PlayerDetailsModel() 
+        {
+            Teams = new List<PlayerTeamSummaryModel>();
+        }
 
         public PlayerDetailsModel(User u)
+            : this()
         {
             PlayerId = u.UserId;
             Name = u.Name;
@@ -20,6 +22,6 @@ namespace MFL.Web.Models
 
         public string Name { get; set; }
 
-
+        public IList<PlayerTeamSummaryModel> Teams { get; set; }
     }
 }

@@ -12,17 +12,27 @@ namespace MFL.Web.Models
 
         public PlayerTeamSummaryModel(Team t)
         {
-            PlayerId = t.User.UserId;
-            Player = t.User.Name;
-            Season = new SeasonListItemModel() { Id = t.Season.SeasonId, Name = t.Season.Name };
+            if (t.User != null)
+            {
+                PlayerId = t.User.UserId;
+                Player = t.User.Name;
+            }
+
+            if (t.Season != null)
+            {
+                Season = new SeasonListItemModel() { Id = t.Season.SeasonId, Name = t.Season.Name };
+            }
 
             decimal total = 0;
             List<MovieTeamListModel> movies = new List<MovieTeamListModel>();
 
-            foreach (var m in t.Movies)
+            if (t.Movies != null)
             {
-                movies.Add(new MovieTeamListModel(m));
-                total += m.DomesticGross;
+                foreach (var m in t.Movies)
+                {
+                    movies.Add(new MovieTeamListModel(m));
+                    total += m.DomesticGross;
+                }
             }
 
             Movies = movies;

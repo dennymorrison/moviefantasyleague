@@ -1,7 +1,13 @@
-﻿
+﻿@model MFL.Web.Models.PlayerDetailsModel
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = @Model.Name + " History";
+    ViewBag.Menu = "History";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name's History</h2>
 
+@foreach (var t in Model.Teams)
+{
+    Html.RenderPartial("_PlayerTeamSummary", t);
+}

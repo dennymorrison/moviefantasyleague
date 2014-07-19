@@ -33,5 +33,10 @@ namespace MFL.Data.Repository
         {
             throw new NotImplementedException();
         }
+
+        public IList<Team> GetPlayerTeams(Guid playerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

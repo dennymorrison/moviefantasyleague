@@ -1,9 +1,7 @@
-﻿using System;
+﻿using MFL.Web.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using MFL.Web.Models;
 
 namespace MFL.Web.Controllers
 {
@@ -30,6 +28,17 @@ namespace MFL.Web.Controllers
         public ActionResult Details(Guid id)
         {
             PlayerDetailsModel model = new PlayerDetailsModel(PlayerRepository.GetById(id));
+
+            var teamEntities = PlayerRepository.GetPlayerTeams(id);
+
+            List<PlayerTeamSummaryModel> teams = new List<PlayerTeamSummaryModel>();
+            foreach(var t in teamEntities)
+            {
+                teams.Add(new PlayerTeamSummaryModel(t));
+            }
+
+            model.Teams = teams;
+
             return View(model);
         }
 	}

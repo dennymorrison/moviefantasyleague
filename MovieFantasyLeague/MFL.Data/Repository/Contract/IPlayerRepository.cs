@@ -8,5 +8,6 @@ namespace MFL.Data.Repository.Contract
 {
     public interface IPlayerRepository: IRepository<User>
     {
+        IList<Team> GetPlayerTeams(Guid playerId);
     }
 }

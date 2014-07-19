@@ -80,6 +80,7 @@
     <Compile Include="Repository\Contract\IPlayerRepository.cs" />
     <Compile Include="Repository\Contract\IRepository.cs" />
     <Compile Include="Repository\Contract\ISeasonRepository.cs" />
+    <Compile Include="Repository\Mock\MockDataSource.cs" />
     <Compile Include="Repository\Mock\MockMovieRepository.cs" />
     <Compile Include="Repository\Mock\MockPlayerRepository.cs" />
     <Compile Include="Repository\Mock\MockSeasonRepository.cs" />

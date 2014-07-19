@@ -1,18 +1,11 @@
-﻿using System;
+﻿using MFL.Data.Repository.Contract;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MFL.Data.Repository.Contract;
 
 namespace MFL.Data.Repository.Mock
 {
     public class MockPlayerRepository: IPlayerRepository
     {
-        public static readonly Guid DennyId = new Guid("7e1009d6-d456-45bd-a0a5-1ad3f4c36560");
-        public static readonly Guid HeatherId = new Guid("d9df67e7-99e7-4884-b356-01b48a7297e2");
-        public static readonly Guid RobertId = new Guid("32eae10e-dc73-4787-8f44-75e1fbd0ffb0");
-
         public bool Delete(Guid id)
         {
             return true;
@@ -27,9 +20,9 @@ namespace MFL.Data.Repository.Mock
         {
             List<User> results = new List<User>();
 
-            results.Add(Denny);
-            results.Add(Heather);
-            results.Add(Robert);
+            results.Add(MockDataSource.Denny);
+            results.Add(MockDataSource.Heather);
+            results.Add(MockDataSource.Robert);
 
             return results;
         }
@@ -38,12 +31,12 @@ namespace MFL.Data.Repository.Mock
         {
             User result = new User();
 
-            if (id == DennyId)
-                result = Denny;
-            else if (id == HeatherId)
-                result = Heather;
-            else if (id == RobertId)
-                result = Robert;
+            if (id == MockDataSource.DennyId)
+                result = MockDataSource.Denny;
+            else if (id == MockDataSource.HeatherId)
+                result = MockDataSource.Heather;
+            else if (id == MockDataSource.RobertId)
+                result = MockDataSource.Robert;
 
             return result;
         }
@@ -53,46 +46,16 @@ namespace MFL.Data.Repository.Mock
             return true;
         }
 
-        public static User Denny
+        public IList<Team> GetPlayerTeams(Guid playerId)
         {
-            get
-            {
-                User result = new User();
-                result.UserId = DennyId;
-                result.Name = "Denny";
-                result.IsAdmin = true;
-                result.EmailAddress = "email@email.com";
+            List<Team> results = new List<Team>();
 
-                return result;
-            }
-        }
+            results.Add(MockDataSource.GetTeamForPlayerAndSeason(playerId, MockDataSource.CompletedSeasonId));
+            results.Add(MockDataSource.GetTeamForPlayerAndSeason(playerId, MockDataSource.DraftingSeasonId));
+            results.Add(MockDataSource.GetTeamForPlayerAndSeason(playerId, MockDataSource.ExpendablesId));
+            results.Add(MockDataSource.GetTeamForPlayerAndSeason(playerId, MockDataSource.OnGoingSeasonId));
 
-        public static User Heather
-        {
-            get
-            {
-                User result = new User();
-                result.UserId = HeatherId;
-                result.Name = "Heather";
-                result.IsAdmin = false;
-                result.EmailAddress = "email@email.com";
-
-                return result;
-            }
-        }
-
-        public static User Robert
-        {
-            get
-            {
-                User result = new User();
-                result.UserId = RobertId;
-                result.Name = "Robert";
-                result.IsAdmin = false;
-                result.EmailAddress = "email@email.com";
-
-                return result;
-            }
+            return results;
         }
     }
 }
