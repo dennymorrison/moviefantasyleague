@@ -40,7 +40,7 @@ namespace MFL.Web.Controllers
                 teamSummaries.Add(new PlayerTeamSummaryModel(t));
             }
 
-            model.Standings = new StandingsModel() { SeasonName = model.Name, Standings = standings, IsHomepage = false };
+            model.Standings = new StandingsModel() { SeasonName = model.Name, Standings = standings };
             model.PlayerSummaries = teamSummaries;
 
             return View(model);

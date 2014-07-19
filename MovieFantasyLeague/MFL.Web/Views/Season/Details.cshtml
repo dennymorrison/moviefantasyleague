@@ -23,7 +23,7 @@
 }
 else if(Model.Status == MFL.Web.Models.SeasonStatus.DraftPeriod)
 {
-    <div class="message">
+    <div class="bulletin">
         <span>This season's draft is currently happening!</span> Be sure to visit the <a href="@Url.Action("Index", "Draft", new { seasonId = Model.Id })">Draft Page</a> to pick your team of movies before @Model.EndEditDate.ToShortDateString().
         <br />
         The season will start on @Model.StartDate.ToShortDateString() and run through @Model.EndDate.ToShortDateString().
@@ -37,15 +37,17 @@ else if(Model.Status == MFL.Web.Models.SeasonStatus.OnGoing)
 }
 else // Planned
 {
-    <div class="bulletin">
+    <div class="message">
         This season has been setup, but it hasn't started yet. You can begin making your movie selections on @Model.StartEditDate.ToShortDateString().
         This season will run from @Model.StartDate.ToShortDateString() through @Model.EndDate.ToShortDateString().
     </div>
 }
 
+<h3>Standings</h3>
+
 @{Html.RenderPartial("_Standings", Model.Standings);}
 
-<h3>The Teams</h3>
+<h3>Teams</h3>
 
 @foreach(var p in Model.PlayerSummaries)
 {

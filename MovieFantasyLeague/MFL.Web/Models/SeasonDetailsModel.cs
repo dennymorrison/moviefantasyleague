@@ -39,7 +39,7 @@ namespace MFL.Web.Models
             {
                 Status = SeasonStatus.OnGoing;
             }
-            else if (StartDate > DateTime.Now)
+            else if (StartDate > DateTime.Now && StartEditDate > DateTime.Now)
             {
                 Status = SeasonStatus.Planned;
             }

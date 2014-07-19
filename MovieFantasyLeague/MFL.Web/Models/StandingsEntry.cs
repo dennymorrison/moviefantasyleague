@@ -18,7 +18,7 @@ namespace MFL.Web.Models
 
             foreach(var m in t.Movies)
             {
-                if (m.ReleaseDate >= DateTime.Now)
+                if (m.ReleaseDate <= DateTime.Now)
                     openMovies++;
 
                 total += m.DomesticGross;

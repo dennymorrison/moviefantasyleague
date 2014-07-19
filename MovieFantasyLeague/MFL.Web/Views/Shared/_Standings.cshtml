@@ -1,14 +1,5 @@
 ﻿@model MFL.Web.Models.StandingsModel
 
-@if (Model.IsHomepage)
-{
-    <h2>Standings for <a href="@Url.Action("Details", "Season", new { Id = Model.SeasonId })">@Model.SeasonName</a></h2>    
-}
-else
-{
-    <h3>Standings for <a href="@Url.Action("Details", "Season", new { Id = Model.SeasonId })">@Model.SeasonName</a></h3>    
-}
-
 <table class="tablesaw table-striped" data-mode="stack">
     <thead>
         <tr>

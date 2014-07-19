@@ -15,7 +15,5 @@ namespace MFL.Web.Models
         public string SeasonName { get; set; }
 
         public IList<StandingsEntry> Standings { get; set; }
-
-        public bool IsHomepage { get; set; }
     }
 }

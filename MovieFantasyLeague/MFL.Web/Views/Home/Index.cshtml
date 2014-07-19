@@ -18,4 +18,6 @@
     </div>
 }
 
+<h2>Standings for <a href="@Url.Action("Details", "Season", new { Id = Model.Standings.SeasonId })">@Model.Standings.SeasonName</a></h2>    
+
 @{Html.RenderPartial("_Standings", Model.Standings);}
