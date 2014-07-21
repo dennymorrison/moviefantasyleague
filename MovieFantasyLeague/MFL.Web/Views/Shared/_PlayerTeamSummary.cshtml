@@ -1,45 +1,47 @@
 ﻿@model MFL.Web.Models.PlayerTeamSummaryModel
 
-@if(Model.ShowPlayerName)
-{ 
-    <h4>@Model.Player</h4>
-}
+<div class="container">
+    @if (Model.ShowPlayerName)
+    {
+        <h4>@Model.Player</h4>
+    }
 
-@if (Model.ShowSeasonName)
-{
-    <h4><a href="@Url.Action("Season", "Details", new { id = Model.Season.Id })">@Model.Season.Name</a></h4>
-}
+    @if (Model.ShowSeasonName)
+    {
+        <h4><a href="@Url.Action("Details", "Season", new { id = Model.Season.Id })">@Model.Season.Name</a></h4>
+    }
 
-@if(Model.ShowSeasonChampion)
-{
-    <div class="money">
-        <span>Champion:</span> @Model.ChampionName
-    </div>
-}
+    @if (Model.ShowSeasonChampion)
+    {
+        <div class="money">
+            <span>Champion:</span> @Model.ChampionName
+        </div>
+    }
 
-<table class="tablesaw table-striped" data-mode="stack">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Release Date</th>
-            <th>Domestic Gross</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var m in Model.Movies)
-        {
+    <table class="tablesaw table-striped" data-mode="stack">
+        <thead>
             <tr>
-                <td>
-                    <a href="@Url.Action("Details", "Movie", new { Id = m.Id })">@m.Title</a>
-                </td>
-                <td>
-                    @m.ReleaseDate.ToShortDateString()
-                </td>
-                <td>
-                    @m.DomesticGross.ToString("C")
-                </td>
+                <th>Title</th>
+                <th>Release Date</th>
+                <th>Domestic Gross</th>
             </tr>
-        }
-    </tbody>
-    <tfoot></tfoot>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.Movies)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details", "Movie", new { Id = m.Id })">@m.Title</a>
+                    </td>
+                    <td>
+                        @m.ReleaseDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @m.DomesticGross.ToString("C")
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>

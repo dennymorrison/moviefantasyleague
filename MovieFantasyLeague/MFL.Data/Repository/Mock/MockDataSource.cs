@@ -45,25 +45,25 @@ namespace MFL.Data.Repository.Mock
             List<Movie> movies = new List<Movie>();
             if (seasonId == MockDataSource.CompletedSeasonId)
             {
-                result.Season = new Season() { SeasonId = MockDataSource.CompletedSeason.SeasonId, Name = MockDataSource.CompletedSeason.Name, Team = ChampionTeam };
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "Harry Potter", ReleaseDate = MockDataSource.CompletedSeason.EndDate.AddDays(-20), DomesticGross = 412254445 });
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "James Bond", ReleaseDate = MockDataSource.CompletedSeason.EndDate.AddDays(-23), DomesticGross = 545444514 });
+                result.Season = new Season() { SeasonId = CompletedSeason.SeasonId, Name = CompletedSeason.Name, Team = ChampionTeam };
+                movies.Add(new Movie() { MovieId = HarryPotterId, Name = HarryPotter.Name, ReleaseDate = CompletedSeason.EndDate.AddDays(-20), DomesticGross = HarryPotter.DomesticGross });
+                movies.Add(new Movie() { MovieId = IndyId, Name = Indy.Name, ReleaseDate = CompletedSeason.EndDate.AddDays(-23), DomesticGross = Indy.DomesticGross });
             }
             else if (seasonId == MockDataSource.DraftingSeasonId)
             {
-                result.Season = new Season() { SeasonId = MockDataSource.DraftingSeason.SeasonId, Name = MockDataSource.DraftingSeason.Name };
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "Harry Potter", ReleaseDate = MockDataSource.DraftingSeason.EndDate.AddDays(-20), DomesticGross = 0 });
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "James Bond", ReleaseDate = MockDataSource.DraftingSeason.EndDate.AddDays(-20), DomesticGross = 0 });
+                result.Season = new Season() { SeasonId = DraftingSeason.SeasonId, Name = DraftingSeason.Name };
+                movies.Add(new Movie() { MovieId = PulpId, Name = Pulp.Name, ReleaseDate = DraftingSeason.EndDate.AddDays(-20), DomesticGross = 0 });
+                movies.Add(new Movie() { MovieId = ExpendablesId, Name = Expendables.Name, ReleaseDate = DraftingSeason.EndDate.AddDays(-20), DomesticGross = 0 });
             }
             else if (seasonId == MockDataSource.OnGoingSeasonId)
             {
-                result.Season = new Season() { SeasonId = MockDataSource.OnGoingSeason.SeasonId, Name = MockDataSource.OnGoingSeason.Name };
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "Harry Potter", ReleaseDate = MockDataSource.OnGoingSeason.EndDate.AddDays(-20), DomesticGross = 41225 });
-                movies.Add(new Movie() { MovieId = Guid.NewGuid(), Name = "James Bond", ReleaseDate = MockDataSource.OnGoingSeason.EndDate.AddDays(-20), DomesticGross = 5454514 });
+                result.Season = new Season() { SeasonId = OnGoingSeason.SeasonId, Name = OnGoingSeason.Name };
+                movies.Add(new Movie() { MovieId = PulpId, Name = Pulp.Name, ReleaseDate = OnGoingSeason.EndDate.AddDays(-20), DomesticGross = Pulp.DomesticGross });
+                movies.Add(new Movie() { MovieId = IndyId, Name = Indy.Name, ReleaseDate = OnGoingSeason.EndDate.AddDays(-20), DomesticGross = Indy.DomesticGross });
             }
             else
             {
-                result.Season = new Season() { SeasonId = MockDataSource.PlannedSeason.SeasonId, Name = MockDataSource.PlannedSeason.Name };
+                result.Season = new Season() { SeasonId = PlannedSeason.SeasonId, Name = PlannedSeason.Name };
             }
 
             result.Movies = movies;
@@ -139,7 +139,7 @@ namespace MFL.Data.Repository.Mock
                 result.LastUpdateDate = result.EndDate.AddDays(1);
                 result.Budget = 100;
                 result.ChampionTeamId = Guid.NewGuid();
-                result.Team = new Team() { User = new User() { UserId = Guid.NewGuid(), Name = "Denny" } };
+                result.Team = new Team() { User = new User() { UserId = DennyId, Name = Denny.Name } };
 
                 return result;
             }
@@ -200,7 +200,7 @@ namespace MFL.Data.Repository.Mock
                 result.PosterLink = "http://ia.media-imdb.com/images/M/MV5BMTY4NTIwODg0N15BMl5BanBnXkFtZTcwOTc0MjEzMw@@._V1_SY317_CR0,0,214,317_AL_.jpg";
                 result.DraftCost = 42;
                 result.DomesticGross = 547845574;
-                result.Season = new Season() { SeasonId = MockDataSource.OnGoingSeasonId, Name = MockDataSource.OnGoingSeason.Name };
+                result.Season = new Season() { SeasonId = OnGoingSeasonId, Name = OnGoingSeason.Name };
 
                 return result;
             }
@@ -220,7 +220,7 @@ namespace MFL.Data.Repository.Mock
                 result.DraftCost = 10;
                 result.Note = "Note on the movie.";
                 result.DomesticGross = 41411313;
-                result.Season = new Season() { SeasonId = MockDataSource.OnGoingSeasonId, Name = MockDataSource.OnGoingSeason.Name };
+                result.Season = new Season() { SeasonId = OnGoingSeasonId, Name = OnGoingSeason.Name };
 
                 return result;
             }
@@ -239,7 +239,7 @@ namespace MFL.Data.Repository.Mock
                 result.PosterLink = "http://ia.media-imdb.com/images/M/MV5BMjA0ODEzMTc1Nl5BMl5BanBnXkFtZTcwODM2MjAxNA@@._V1_SX214_AL_.jpg";
                 result.DraftCost = 12;
                 result.DomesticGross = 1577981;
-                result.Season = new Season() { SeasonId = MockDataSource.OnGoingSeasonId, Name = MockDataSource.OnGoingSeason.Name };
+                result.Season = new Season() { SeasonId = OnGoingSeasonId, Name = OnGoingSeason.Name };
 
                 return result;
             }
@@ -258,7 +258,7 @@ namespace MFL.Data.Repository.Mock
                 result.PosterLink = "http://ia.media-imdb.com/images/M/MV5BMjE0ODk2NjczOV5BMl5BanBnXkFtZTYwNDQ0NDg4._V1_SY317_CR4,0,214,317_AL_.jpg";
                 result.DraftCost = 8;
                 result.DomesticGross = 649849848;
-                result.Season = new Season() { SeasonId = MockDataSource.OnGoingSeasonId, Name = MockDataSource.OnGoingSeason.Name };
+                result.Season = new Season() { SeasonId = OnGoingSeasonId, Name = OnGoingSeason.Name };
 
                 return result;
             }
