@@ -20,6 +20,18 @@ body > .container {
     padding-bottom:30px;
 }
 
+.text-right{
+    text-align:right;
+}
+
+.text-left{
+    text-align:left;
+}
+
+.text-center{
+    text-align:center;
+}
+
 /* Login with Google style
 *****************************************/
 .googleButton{
