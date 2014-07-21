@@ -1,6 +1,4 @@
-﻿/* Sticky footer styles
--------------------------------------------------- */
-.footer { 
+﻿.footer { 
   bottom: 0;
   width: 100%;
   margin-top:60px;
@@ -18,18 +16,6 @@ body > .container {
 
 .buffer{
     padding-bottom:30px;
-}
-
-.text-right{
-    text-align:right;
-}
-
-.text-left{
-    text-align:left;
-}
-
-.text-center{
-    text-align:center;
 }
 
 /* Login with Google style
