@@ -23,7 +23,7 @@
             <tr>
                 <th>Title</th>
                 <th>Release Date</th>
-                <th>Domestic Gross</th>
+                <th class="text-right">Domestic Gross</th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
                     <td>
                         @m.ReleaseDate.ToShortDateString()
                     </td>
-                    <td>
+                    <td class="text-right">
                         @m.DomesticGross.ToString("C")
                     </td>
                 </tr>
