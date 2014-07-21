@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Configuration;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
@@ -34,8 +35,8 @@ namespace MFL.Web
             //   appSecret: "");
 
             GoogleOAuth2AuthenticationOptions options = new GoogleOAuth2AuthenticationOptions();
-            options.ClientId = "1041186130845-j5imqhupho9u7cjhs46p2iefoove2rtk.apps.googleusercontent.com";
-            options.ClientSecret = "pkZmXgScvWs7vM7uYL_JU8Pf";
+            options.ClientId = ConfigurationManager.AppSettings["ClientId"];
+            options.ClientSecret = ConfigurationManager.AppSettings["ClientSecret"];
 
             app.UseGoogleAuthentication(options);                        
         }
