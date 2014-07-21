@@ -10,11 +10,20 @@ namespace MFL.Web.Controllers
     [RequireHttps]
     public class DraftController : BaseController
     {
-        public ActionResult Index()
+        [Authorize()]
+        public ActionResult Index(Guid id)
         {
-            DraftModel model = new DraftModel();
+            DraftModel model = new DraftModel(SeasonRepository.GetById(id), CurrentUser);
 
+            var movieEntities = MovieRepository.GetDraftListForLeagueAndSeason(GetPlayerLeagueId(), id);
 
+            List<MovieDraftListModel> movies = new List<MovieDraftListModel>();
+            foreach (var m in movieEntities)
+            {
+                movies.Add(new MovieDraftListModel(m));
+            }
+
+            model.Movies = movies;
 
             return View(model);
         }

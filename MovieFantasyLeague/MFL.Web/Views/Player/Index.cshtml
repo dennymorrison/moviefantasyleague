@@ -1,7 +1,60 @@
-﻿
+﻿@model MFL.Web.Models.PlayerListModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Players";
+    ViewBag.Menu = "Players";
 }
 
-<h2>Index</h2>
+<h2>Players</h2>
 
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        @Html.ActionLink("Create New", "Create")
+    </div>
+    
+    <table class="tablesaw table-striped" data-mode="stack">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.Players)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Edit", "Player", new { Id = m.PlayerId })">@m.Name</a>
+                    </td>
+                    <td>
+                        @(m.IsAdmin ? "Admin" : "Player")
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+}
+else
+{ 
+    <table class="tablesaw table-striped" data-mode="stack">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.Players)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("History", "Player", new { Id = m.PlayerId })">@m.Name</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+}

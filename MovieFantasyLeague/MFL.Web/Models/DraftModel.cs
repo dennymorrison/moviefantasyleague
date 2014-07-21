@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using MFL.Data;
 
 namespace MFL.Web.Models
 {
@@ -10,6 +9,19 @@ namespace MFL.Web.Models
         public DraftModel()
         {
             Movies = new List<MovieDraftListModel>();
+        }
+
+        public DraftModel(Season s, User u)
+        {
+            SeasonId = s.SeasonId;
+            SeasonName = s.Name;
+            StartEditDate = s.StartEdits;
+            EndEditDate = s.EndEdits;
+            IsEditable = (DateTime.Now >= s.StartEdits && DateTime.Now <= s.EndEdits);
+            Budget = s.Budget;
+
+            PlayerId = u.UserId;
+            Player = u.Name;
         }
 
         public IList<MovieDraftListModel> Movies { get; set; }

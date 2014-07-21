@@ -58,5 +58,17 @@ namespace MFL.Data.Repository.Mock
         {
             return true;
         }
+
+        public IList<Movie> GetDraftListForLeagueAndSeason(Guid leagueId, Guid seasonId)
+        {
+            List<Movie> results = new List<Movie>();
+
+            results.Add(MockDataSource.Indy);
+            results.Add(MockDataSource.HarryPotter);
+            results.Add(MockDataSource.Expendables);
+            results.Add(MockDataSource.Pulp);
+
+            return results;
+        }
     }
 }

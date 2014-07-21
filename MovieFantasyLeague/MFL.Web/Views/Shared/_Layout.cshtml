@@ -43,9 +43,10 @@
                     <li class="@(ViewBag.Menu == "Home" ? "active" : "")"><a href="@Url.Action("Index", "Home")">Home</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="@(ViewBag.Menu == "Draft" ? "active" : "")"><a href="@Url.Action("Index","Draft")">Draft</a></li>
+                        <li class="@(ViewBag.Menu == "Draft" ? "active" : "")"><a href="@Url.Action("Index","Draft", new { id = Guid.NewGuid()})">Draft</a></li>
                     }
                     <li class="@(ViewBag.Menu == "Movies" ? "active" : "")"><a href="@Url.Action("Index","Movie")">Movies</a></li>
+                    <li class="@(ViewBag.Menu == "Players" ? "active" : "")"><a href="@Url.Action("Index","Player")">Players</a></li>
                     <li class="@(ViewBag.Menu == "Seasons" ? "active" : "")"><a href="@Url.Action("Index","Season")">Seasons</a></li>
                     <li class="@(ViewBag.Menu == "About" ? "active" : "")"><a href="@Url.Action("About", "Home")">About</a></li>
                     @if (User.IsInRole("Admin"))

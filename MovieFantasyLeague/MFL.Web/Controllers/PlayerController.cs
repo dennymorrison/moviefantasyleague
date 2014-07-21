@@ -7,7 +7,6 @@ namespace MFL.Web.Controllers
 {
     public class PlayerController : BaseController
     {
-        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             PlayerListModel model = new PlayerListModel();

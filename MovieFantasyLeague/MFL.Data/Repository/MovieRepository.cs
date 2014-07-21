@@ -162,5 +162,10 @@ namespace MFL.Data.Repository
 
             }
         }
+
+        public IList<Movie> GetDraftListForLeagueAndSeason(Guid leagueId, Guid seasonId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
