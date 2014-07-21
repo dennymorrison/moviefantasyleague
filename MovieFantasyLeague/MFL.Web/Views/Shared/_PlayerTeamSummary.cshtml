@@ -36,8 +36,10 @@
                     <td>
                         @m.ReleaseDate.ToShortDateString()
                     </td>
-                    <td class="text-right">
-                        @m.DomesticGross.ToString("C")
+                    <td>
+                        <p class="text-right">
+                            @m.DomesticGross.ToString("C")
+                        </p>
                     </td>
                 </tr>
             }
