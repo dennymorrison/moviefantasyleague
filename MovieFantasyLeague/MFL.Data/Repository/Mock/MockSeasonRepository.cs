@@ -69,5 +69,10 @@ namespace MFL.Data.Repository.Mock
         {
             return MockDataSource.PlannedSeason;
         }
+
+        public Season GetDraftSeason()
+        {
+            return MockDataSource.DraftingSeason;
+        }
     }
 }

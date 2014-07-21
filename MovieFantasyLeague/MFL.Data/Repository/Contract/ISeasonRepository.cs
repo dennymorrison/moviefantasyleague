@@ -13,5 +13,7 @@ namespace MFL.Data.Repository.Contract
         Season GetPlannedSeason();
 
         IList<Team> GetLeagueTeamsForSeason(Guid leagueId, Guid seasonId);
+
+        Season GetDraftSeason();
     }
 }

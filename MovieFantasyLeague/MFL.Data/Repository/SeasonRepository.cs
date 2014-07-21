@@ -139,5 +139,10 @@ namespace MFL.Data.Repository
 
             return result;
         }
+
+        public Season GetDraftSeason()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

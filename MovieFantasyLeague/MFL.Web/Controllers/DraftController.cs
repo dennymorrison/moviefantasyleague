@@ -11,11 +11,11 @@ namespace MFL.Web.Controllers
     public class DraftController : BaseController
     {
         [Authorize()]
-        public ActionResult Index(Guid id)
+        public ActionResult Index()
         {
-            DraftModel model = new DraftModel(SeasonRepository.GetById(id), CurrentUser);
+            DraftModel model = new DraftModel(SeasonRepository.GetDraftSeason(), CurrentUser);
 
-            var movieEntities = MovieRepository.GetDraftListForLeagueAndSeason(GetPlayerLeagueId(), id);
+            var movieEntities = MovieRepository.GetDraftListForLeagueAndSeason(GetPlayerLeagueId(), model.SeasonId);
 
             List<MovieDraftListModel> movies = new List<MovieDraftListModel>();
             foreach (var m in movieEntities)
