@@ -27,8 +27,8 @@ else
         <tr>
             <th>Title</th>
             <th>Release Date</th>
-            <th class="text-right">Draft Cost</th>
-            <th class="text-center">Selected</th>
+            <th><div class="text-right">Draft Cost</div></th>
+            <th><div class="text-center">Selected</div></th>
         </tr>
     </thead>
     <tbody>
@@ -41,11 +41,15 @@ else
                 <td>
                     @m.ReleaseDate.ToShortDateString()
                 </td>
-                <td class="text-right">
-                    @m.DraftCost
+                <td>
+                    <div class="text-right">
+                        @m.DraftCost
+                    </div>
                 </td>
-                <td class="text-center">
-                    <input type="checkbox" checked="@(m.IsSelected? "checked" : "")" readonly="@(Model.IsEditable? "": "readonly")" />
+                <td>
+                    <div class="text-center">
+                        <input type="checkbox" checked="@(m.IsSelected? "checked" : "")" readonly="@(Model.IsEditable? "": "readonly")" />
+                    </div>
                 </td>
             </tr>
         }

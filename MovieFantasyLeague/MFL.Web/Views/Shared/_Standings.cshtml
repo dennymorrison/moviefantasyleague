@@ -5,7 +5,7 @@
         <tr>
             <th>Player</th>
             <th>Progress</th>
-            <th class="text-right">Total</th>
+            <th><div class="text-right">Total</div></th>
         </tr>
     </thead>
     <tbody>
@@ -18,8 +18,10 @@
                 <td>
                     @s.Progess
                 </td>
-                <td class="text-right">
-                    @s.Total.ToString("C")
+                <td>
+                    <div class="text-right">
+                        @s.Total.ToString("C")
+                    </div>                    
                 </td>
             </tr>
         }
